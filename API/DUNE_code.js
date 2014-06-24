@@ -72,7 +72,7 @@
 	
 	// Create sprite sheet
 	coinImage = new Image();	
-	coinImage.src = "images/coin-sprite-animation.png";
+	coinImage.src = "../ART/images/coin-sprite-animation.png";
 	// Create sprite
 	coin = sprite({
 		context: canvas.getContext("2d"),
