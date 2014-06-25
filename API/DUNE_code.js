@@ -2,36 +2,39 @@ $(document).ready(function(){
 
 	var stage;
 	
-	function letsDoThis(){
+	letsDoThis(stage);
+	
+
+	
+});
+
+function letsDoThis(){
 		
 		stage = new createjs.Stage("board");
-		
 
+		/*DEFINING THE BALL*/
 		var ball = new createjs.Shape();
 		ball.graphics.beginFill("#000000").drawCircle(0, 0, 50);
 		ball.x = 50;
 		ball.y = 200;
-		ball.addEventListener("click", handleClick);
-		//Pass a config object
-		createjs.Tween.get(ball, {loop:true}).to({x:450}, 3000).to({x:0}, 3000);
+		ball.addEventListener("click", animateBall);
+		/*DEFINING THE BALL*/
 
-		//The ticker sends a tick
-		createjs.Ticker.addEventListener("tick", onTick);
 
+		/*DEFINING THE TICKER*/
+		createjs.Ticker.setFPS(30);
+		createjs.Ticker.addEventListener("tick", updateStage);
+		console.log("FPS: "+createjs.Ticker.getFPS());
 
 		stage.addChild(ball);
 		
 	}
 
-	function onTick(event){
-		stage.update();
+	function updateStage(event){
+		stage.update();	
 	}
 
-	function handleClick(){
+	function animateBall(){
 		console.log("Clicked the ball");
+		createjs.Tween.get(this, {loop:true}).to({x:450}, 3000).to({x:50}, 3000);
 	}
-	letsDoThis();
-	
-
-	
-});
