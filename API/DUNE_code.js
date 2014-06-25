@@ -28,13 +28,15 @@ function letsDoThis(){
 
 		stage.addChild(ball);
 		
+		function animateBall(event){
+		console.log("Clicked the ball");
+		createjs.Tween.get(ball, {loop:false}).to({x:450}, 3000).to({x:50}, 3000);
+	}
+
 	}
 
 	function updateStage(event){
 		stage.update();	
 	}
 
-	function animateBall(){
-		console.log("Clicked the ball");
-		createjs.Tween.get(this, {loop:true}).to({x:450}, 3000).to({x:50}, 3000);
-	}
+	
