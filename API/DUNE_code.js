@@ -23,28 +23,14 @@ function letsDoThis(){
 		coin.addEventListener("click", animateCoin);
 
 
-		/*DEFINING THE BALL*/
-		var ball = new createjs.Shape();
-		ball.graphics.beginFill("#000000").drawCircle(0, 0, 50);
-		ball.x = 50;
-		ball.y = 200;
-		ball.addEventListener("click", animateBall);
-		/*DEFINING THE BALL*/
-
 
 		/*DEFINING THE TICKER*/
 		createjs.Ticker.setFPS(30);
 		createjs.Ticker.addEventListener("tick", updateStage);
 		console.log("FPS: "+createjs.Ticker.getFPS());
 
-
-		stage.addChild(ball);
 		stage.addChild(coin);
 		
-		function animateBall(event){
-			console.log("Clicked the ball: ball.x =" +ball.x);
-			createjs.Tween.get(ball, {loop:false}).to({x:100, y:100}, 3000).to({x:ball.x, y:ball.y}, 3000);
-		}
 		function animateCoin(event){
 			
 			console.log("Clicked the coin");
