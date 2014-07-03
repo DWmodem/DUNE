@@ -14,7 +14,7 @@ function letsDoThis() {
 
     stage = new createjs.Stage("board");
 
-    /*Defining the coin*/
+    /*Defining the coin*/ //
     coinSheet = new createjs.SpriteSheet({
         framerate: 20,
         images: ["../ART/images/coin-sprite-animation.png"],
