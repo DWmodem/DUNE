@@ -13,6 +13,7 @@ function preload() {
 
 }
 
+var test;
 var player;
 var aliens;
 var bullets;
