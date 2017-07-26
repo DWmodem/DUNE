@@ -27,13 +27,15 @@
     DamesER.prototype.create = function () {
 
         game.physics.startSystem(Phaser.Physics.ARCADE);
-    
+
+        game.physics.arcade.gravity.y = 150;
+        game.physics.arcade.gravity.x = -150;
         // @TODO this is a proof of concept for placing sprites in a grid.
         // Place the tiles in this manner.
         // Create a sprite for each piece.
-        for (var x = 50, i = 0; i < 8; i++, x+=50) {
-            for (var y = 50, j = 0; j < 8; j++, y += 50){
-                piece = game.add.sprite(x, y, 'ship');
+        for (var x = 50, i = 0; i < 10; i++, x+=50) {
+            for (var y = 50, j = 0; j < 10; j++, y += 50){
+                piece = game.add.sprite(x, y, 'kaboom');
                 piece.anchor.setTo(0.5, 0.5);
                 game.physics.enable(piece, Phaser.Physics.ARCADE);
             }
