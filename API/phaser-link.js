@@ -1,7 +1,8 @@
 var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'dames', { preload: preload, create: create, update: update, render: render });
 
 // DamesInterface comes from dames-phaser.js
-var dames = new DamesER(game);
+var shapes = new Shapes(game);
+var dames  = new DamesER(game, shapes);
 
 function preload() {
     dames.preload();
