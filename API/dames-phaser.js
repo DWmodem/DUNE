@@ -4,7 +4,12 @@
     var game;
     var blacksquare;
     var whitesquare;
-
+    var numSq = 8;
+    var sqWidth = 50;
+    var spcWidth = 0;
+    var alternate = false;
+    var sqHeight = sqWidth;
+    
     // This is the Constructor for the dames interface. 
     // The dames interface constructor owns a copy of the dames game
     DamesER = function (phaserGame, shapes) {
@@ -18,15 +23,21 @@
         
         // @TODO this is copied from the game 'Invaders'
         // We should probably use our own assets
+        // pieces
         game.load.image('ship', 'art/assets/games/invaders/player.png');
-        blacksquare = this.shapes.rectangle.define(100, 100, '#FFFFFF', 'blacksquare');
-        whitesquare = this.shapes.rectangle.define(100, 100, '#000000', 'whitesquare');
+        
+        // Backround
+       game.load.image('backround', 'art/backDame.png');
+
+        game.load.image('ship', 'art/assets/games/invaders/player.png');
+        blacksquare = this.shapes.rectangle.define(sqWidth , sqHeight, '#9E6212', 'blacksquare');
+        whitesquare = this.shapes.rectangle.define(sqWidth, sqHeight, '#E1932B', 'whitesquare');
     }
 
     DamesER.prototype.create = function () {
 
         game.physics.startSystem(Phaser.Physics.ARCADE);
-
+        game.add.sprite(0, 0, 'backround')
         game.physics.arcade.gravity.y = 150;
         game.physics.arcade.gravity.x = -150;
 
@@ -34,11 +45,12 @@
         // @TODO this is a proof of concept for placing sprites in a grid.
         // Place the tiles in this manner.
         // Create a sprite for each piece.
-        for (var x = 50, i = 0; i < 10; i++, x+=50) {
-            for (var y = 50, j = 0; j < 10; j++, y += 50){
-                this.shapes.rectangle.sprite(50, 50, x, y, blacksquare);
+        for (var x = calculateStarting(game.width, numSq, sqWidth, spcWidth), i = 0; i < numSq; i++, x+=(sqWidth + spcWidth)) {
+           alternator(blacksquare, whitesquare);
+            for (var y = calculateStarting(game.height, numSq, sqWidth, spcWidth), j = 0; j < numSq; j++, y += (sqWidth + spcWidth)) {
+                this.shapes.rectangle.sprite(5, 5, x, y, alternator(blacksquare, whitesquare));
             }
-        }
+            }
     }
 
     DamesER.prototype.update = function () {
@@ -66,7 +78,6 @@
     Rectangle.prototype.sprite = function(width, height, x, y, texture) {
         var sprite;
         sprite = this.game.add.sprite(x, y, texture);
-        sprite.anchor.setTo(0.5, 0.5);
         return sprite;
     }
 
@@ -79,5 +90,29 @@
 
 window.Shapes = Shapes;
 window.DamesER = DamesER;
+
+// Placement 
+calculateStarting = function (width, numSq, sqWidth, spcWidth){
+var boardWidth = (sqWidth * numSq) + (spcWidth * (numSq - 1))
+
+var deadWidth = (width - boardWidth)
+
+return deadWidth /2
+}
+
+alternator = function (first, second) {
+
+    if (!alternate) {
+        alternate = {"first": first, "second":second, "which": "first"};        
+    }
+
+    if (alternate["which"] == "first") {
+        alternate["which"] = "second"
+    } else {
+        alternate["which"] = "first"
+    }
+
+    return alternate[alternate["which"]]
+}
 
 })()
