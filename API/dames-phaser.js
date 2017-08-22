@@ -1,4 +1,5 @@
 (function () {
+    
 
     // We'll be referring to this a lot
     var game;
@@ -9,6 +10,8 @@
     var spcWidth = 0;
     var alternate = false;
     var sqHeight = sqWidth;
+    var w = 1280, h = 720;
+
     
     // This is the Constructor for the dames interface. 
     // The dames interface constructor owns a copy of the dames game
@@ -29,6 +32,11 @@
         // Backround
        game.load.image('backround', 'art/backDame.png');
 
+       // frame
+       game.load.image('frameG', 'art/frameDameG.png');
+       game.load.image('frameD', 'art/frameDameD.png');
+       game.load.image('freemen', 'art/freemen.png');
+        game.load.image('atreides', 'art/Atreides.png');
         game.load.image('ship', 'art/assets/games/invaders/player.png');
         blacksquare = this.shapes.rectangle.define(sqWidth , sqHeight, '#9E6212', 'blacksquare');
         whitesquare = this.shapes.rectangle.define(sqWidth, sqHeight, '#E1932B', 'whitesquare');
@@ -51,7 +59,24 @@
                 this.shapes.rectangle.sprite(5, 5, x, y, alternator(blacksquare, whitesquare));
             }
             }
-    }
+       // These are the different layers for the backround.
+
+         // Last layer is the caracthers
+        /*freemen = game.add.sprite((w/3)/2, h/12, 'freemen');
+        freemen.anchor.setTo(0.5, 0.0);
+
+        atreides = game.add.sprite((w-(w/6)), h/12, 'atreides');
+        atreides.anchor.setTo(0.5, 0.0);
+        
+        // Then the frames
+
+        
+        frameG = game.add.sprite(0, 0, 'frameG');
+        frameG.anchor.setTo(0.0, 0.0);
+
+        frameD = game.add.sprite(w - w/3, 0, 'frameD');
+        frameD.anchor.setTo(0.0, 0.0);*/
+ }
 
     DamesER.prototype.update = function () {
         
