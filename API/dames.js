@@ -1,89 +1,48 @@
 //Dames
 (function () {
-
+    var EMPTY_SQUARE = 0;
+    var PLAYER_1_PIECE = 1;
+    var PLAYER_2_PIECE = 2;
+    var NUM_PLAYER_ROWS = 3;
+    var NUM_SQUARES = 8;
+    
     // Constructor for the Dames game.
     // This is where the properties are defined.
     Dames = function () {
-
-        this.board = new Board;
-        this.players = [];
-        this.player1 = new Player();
-        this.player2 = new Player();
-
+        this.board = [];
     }
 
-    // Add a method to all Dame objects.
-    Dames.prototype.start = function () {
-        this.beginRound();
-
-    }
-
-    // Add a method to all Dame objects.
-    Dames.prototype.preload = function () {
-
-    }
-
-    Dames.prototype.beginRound = function () {
-        this.board.init();
-        this.player1.placePlayer1Pieces(this.board);
-        this.player2.placePlayer2Pieces(this.board);
-    }
-    
-    // The Board of the dames game. Its state changes over the course of the game.
-    Board = function () {
-        
-        this.SIZE_X = 8;
-        this.SIZE_Y = 8;
-
-        tiles = [];
-    }
-
-    Board.prototype.init = function () {
-        
-        for (var x = 0; x < this.SIZE_X; x++) {
-            for (var y = 0; y < this.SIZE_Y; y++) {
-                this.tiles[x][y] = null;
+    Dames.prototype.initBoard = function () {
+        for (var i = 0; i < NUM_SQUARES; i++) {
+            this.board[i] = [];
+            for (var j = 0; j < NUM_SQUARES; j++) {
+                this.board[i][j] = EMPTY_SQUARE;
             }
         }
     }
 
-    // The Move object describing the move a player made
-    Move = function () {
-
+    Dames.prototype.placePlayer1 = function () {
+        for (var j = NUM_SQUARES-1 ; j > NUM_SQUARES - NUM_PLAYER_ROWS -1 ; j--) {
+            for (var i = (j+1) % 2; i < NUM_SQUARES; i+=2) {
+                this.board[j][i] = PLAYER_1_PIECE;
+            }
+        }
     }
 
-    // A piece Object
-    Piece = function () {
-
+    Dames.prototype.placePlayer2 = function () {
+        for (var j = 0; j < NUM_PLAYER_ROWS; j++) {
+            for (var i = (j+1) % 2; i < NUM_SQUARES; i+=2) {
+                this.board[j][i] = PLAYER_2_PIECE;
+            }
+        }
     }
 
-    // A Player object. I expect this will be necessary.
-    Player = function () {
-
+    Dames.prototype.setup = function () {
+        this.initBoard();
+        this.placePlayer1();
+        this.placePlayer2();
+        console.log(this.board);
     }
 
-    Player.prototype.placePlayer1Pieces = function (board) {
-
-    }
-
-    Player.prototype.placePlayer2Pieces = function (board) {
-        
-    }
-
-    // A list of all the rounds 
-    RoundsHistory = function () {
-
-    }
-
-    // A round is a set of moves, and a victor. A round could also be 'In progress' or 'Unfinished'
-    Round = function () {
-
-    }
-
-    // The set of moves done for a round 
-    MovesHistory = function () {
-
-    }
-
-window.Dames = Dames;
+    window.Dames = Dames;
 })()
