@@ -4,8 +4,7 @@
     var game;
     var blacksquare;
     var whitesquare;
-    var player1tokens;
-    var player2tokens;
+    var tokens = {};
     var numSq = 8;
     var sqWidth = 50;
     var spcWidth = 0;
@@ -23,8 +22,6 @@
     }
 
     DamesER.prototype.preload = function () {
-        game.load.image('ship', 'art/assets/games/invaders/player.png');
-
         // Backround
         game.load.image('backround', 'art/backDame.png');
 
@@ -56,6 +53,7 @@
 
     DamesER.prototype.displayPlayer = function (playerID) {
         display(this.dames.board, playerID, "ship");
+        console.log(tokens["player2"]);
     }
 
     DamesER.prototype.update = function () {
@@ -119,11 +117,19 @@
 
     display = function (board, identity, sprite) {
 
+        if (!tokens["player" + identity]) {
+            tokens["player" + identity] = {}
+        }
+
+        var playerTokens = tokens["player" + identity];
         for (var x = 0; x < board.length; x++) {
             for (var y = 0; y < board[x].length; y++) {
                 if (board[x][y] == identity) {
                     canvasCoords = ccfbc(x, y);
-                    this.game.add.sprite(canvasCoords.x, canvasCoords.y, sprite).anchor.setTo(0.5,  0.5);
+                    var currentToken = tokens["player" + identity]["token" + x + y] = this.game.add.sprite(canvasCoords.x, canvasCoords.y, sprite);
+                    currentToken.anchor.setTo(0.5,  0.5);
+                    currentToken.inputEnabled = true;
+                    currentToken.input.enableDrag(true);
                 }
             }
         }
