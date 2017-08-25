@@ -2,17 +2,17 @@ var game = new Phaser.Game(1280, 720, Phaser.CANVAS, 'dames', { preload: preload
 
 // DamesInterface comes from dames-phaser.js
 var shapes = new Shapes(game);
-var Menu   = new Menu(game);
-var dames  = new DamesER(game, shapes);
+var menu   = new Menu(game);
+var dames  = new DamesER(game, shapes, menu);
 
 function preload() {
     dames.preload();
-    Menu.preload();
+    menu.preload();
 }
 
 function create() {
     dames.create();
-    Menu.create();
+    menu.create();
 }
 
 function update() {

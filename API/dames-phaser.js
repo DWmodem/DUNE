@@ -1,10 +1,11 @@
 (function () {
     
-
     // We'll be referring to this a lot
     var game;
     var blacksquare;
     var whitesquare;
+    var player1tokens;
+    var player2tokens;
     var numSq = 8;
     var sqWidth = 50;
     var spcWidth = 0;
@@ -12,7 +13,6 @@
     var sqHeight = sqWidth;
     var w = 1280, h = 720;
 
-    
     // This is the Constructor for the dames interface. 
     // The dames interface constructor owns a copy of the dames game
     DamesER = function (phaserGame, shapes) {
@@ -23,19 +23,15 @@
     }
 
     DamesER.prototype.preload = function () {
-        
-        // @TODO this is copied from the game 'Invaders'
-        // We should probably use our own assets
-        // pieces
         game.load.image('ship', 'art/assets/games/invaders/player.png');
-        
-        // Backround
-       game.load.image('backround', 'art/backDame.png');
 
-       // frame
-       game.load.image('frame1', 'art/frameDameG.png');
-       game.load.image('frame2', 'art/frameDameD.png');
-       game.load.image('freemen', 'art/freemen.png');
+        // Backround
+        game.load.image('backround', 'art/backDame.png');
+
+        // frame
+        game.load.image('frame1', 'art/frameDameG.png');
+        game.load.image('frame2', 'art/frameDameD.png');
+        game.load.image('freemen', 'art/freemen.png');
         game.load.image('atreides', 'art/Atreides.png');
         game.load.image('ship', 'art/assets/games/invaders/player.png');
         blacksquare = this.shapes.rectangle.define(sqWidth , sqHeight, '#9E6212', 'blacksquare');
@@ -49,34 +45,18 @@
         game.physics.arcade.gravity.y = 150;
         game.physics.arcade.gravity.x = -150;
 
-        
-        // @TODO this is a proof of concept for placing sprites in a grid.
-        // Place the tiles in this manner.
-        // Create a sprite for each piece.
         for (var x = calculateStarting(game.width, numSq, sqWidth, spcWidth), i = 0; i < numSq; i++, x+=(sqWidth + spcWidth)) {
-           alternator(blacksquare, whitesquare);
+            alternator(blacksquare, whitesquare);
             for (var y = calculateStarting(game.height, numSq, sqWidth, spcWidth), j = 0; j < numSq; j++, y += (sqWidth + spcWidth)) {
                 this.shapes.rectangle.sprite(5, 5, x, y, alternator(blacksquare, whitesquare));
             }
-            }
-       // These are the different layers for the backround.
+        }
+        this.dames.setup();
+    }
 
-         // Last layer is the caracthers
-        /*freemen = game.add.sprite((w/3)/2, h/12, 'freemen');
-        freemen.anchor.setTo(0.5, 0.0);
-
-        atreides = game.add.sprite((w-(w/6)), h/12, 'atreides');
-        atreides.anchor.setTo(0.5, 0.0);
-        
-        // Then the frames
-
-        
-        frameG = game.add.sprite(0, 0, 'frameG');
-        frameG.anchor.setTo(0.0, 0.0);
-
-        frameD = game.add.sprite(w - w/3, 0, 'frameD');
-        frameD.anchor.setTo(0.0, 0.0);*/
- }
+    DamesER.prototype.displayPlayer = function (playerID) {
+        display(this.dames.board, playerID, "ship");
+    }
 
     DamesER.prototype.update = function () {
         
@@ -113,31 +93,56 @@
         this.rectangle = new Rectangle(this.game);
     }
 
+
+    alternator = function (first, second) {
+
+        if (!alternate) {
+            alternate = {"first": first, "second":second, "which": "first"};        
+        }
+
+        if (alternate["which"] == "first") {
+            alternate["which"] = "second"
+        } else {
+            alternate["which"] = "first"
+        }
+
+        return alternate[alternate["which"]]
+    }
+
+    // Placement 
+    calculateStarting = function (width, numSq, sqWidth, spcWidth){
+        var boardWidth = (sqWidth * numSq) + (spcWidth * (numSq - 1));
+        var deadWidth = (width - boardWidth);
+        return deadWidth /2;
+    }
+
+
+    display = function (board, identity, sprite) {
+
+        for (var x = 0; x < board.length; x++) {
+            for (var y = 0; y < board[x].length; y++) {
+                if (board[x][y] == identity) {
+                    canvasCoords = ccfbc(x, y);
+                    this.game.add.sprite(canvasCoords.x, canvasCoords.y, sprite).anchor.setTo(0.5,  0.5);
+                }
+            }
+        }
+    }
+
+    // Get canvas coords from board coords
+    ccfbc = function (bx, by) {
+        var cxs = calculateStarting(game.width, numSq, sqWidth, spcWidth);
+        var cys = calculateStarting(game.height, numSq, sqWidth, spcWidth);
+        
+        var dx  = (sqWidth + spcWidth) * bx;
+        var dy  = (sqWidth + spcWidth) * by;
+        
+        var cx = cxs + dx + (sqWidth / 2);
+        var cy = cys + dy + (sqWidth / 2);
+        return {x: cx, y: cy};
+    }
+
 window.Shapes = Shapes;
 window.DamesER = DamesER;
-
-// Placement 
-calculateStarting = function (width, numSq, sqWidth, spcWidth){
-var boardWidth = (sqWidth * numSq) + (spcWidth * (numSq - 1))
-
-var deadWidth = (width - boardWidth)
-
-return deadWidth /2
-}
-
-alternator = function (first, second) {
-
-    if (!alternate) {
-        alternate = {"first": first, "second":second, "which": "first"};        
-    }
-
-    if (alternate["which"] == "first") {
-        alternate["which"] = "second"
-    } else {
-        alternate["which"] = "first"
-    }
-
-    return alternate[alternate["which"]]
-}
 
 })()

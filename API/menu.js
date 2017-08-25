@@ -4,9 +4,11 @@
 (function () {
   
     var game_elements = {};
-  
     var w = 1280, h = 720;
-    var Menu = function (game) {}
+    
+    var Menu = function (game, dames) {
+        this.dames = dames;
+    }
 
 
 Menu.prototype.preload = function () {
@@ -27,77 +29,12 @@ Menu.prototype.preload = function () {
 }
 
 Menu.prototype.create = function () {
- 
-    function header(playerNumb){
 
-        if (!game_elements['game_elements' + playerNumb]){
-           game_elements['game_elements' + playerNumb] = {};    
-        }
-        
-        if (playerNumb === 1){
-           x= w/6; y = h/2 -50;
-         } else {
-           x =w-w/6; y = h/2 -50; 
-         }
-        game_elements['game_elements' + playerNumb]['header' + playerNumb] = game.add.text(x, y, 'Player' + playerNumb + ', choose your House!');
-        game_elements['game_elements' + playerNumb]['header' + playerNumb].anchor.setTo(0.5, 0.5);
-        
-        }
-    
-    header(1);
-    header(2);    
-
-// This function calls a clickable option in the menu, and decide wich sprites to put depending on the player and the house 
- 
-     function choice(var1, x, y, playerNumb, house){
-
-        if (!game_elements['game_elements' + playerNumb]){
-           game_elements['game_elements' + playerNumb] = {};
-        }       
-        //var playersElements = game_elements['game_elements' + playerNumb];
-        game_elements['game_elements' + playerNumb][house]  = game.add.text(x, y, house,{ font: '30px Arial', fill: '#fff' });
-        game_elements['game_elements' + playerNumb][house].anchor.setTo(0.5, 0.5);
-        game_elements['game_elements' + playerNumb][house].inputEnabled = true;
-        game_elements['game_elements' + playerNumb][house].events.onInputDown.add(function(){
-            
-            if (playerNumb === 1){
-                console.log('player 1 ok');
-                bx = 57; by = 59; sx = (w/3)/2;sy =  h/2 + 50; tx = 250; ty = 15; fx = 0; fy = 0;
-               
-            } 
-
-            if (playerNumb === 2) {
-            console.log("player 2 ok");
-            bx = w-57; by = 59; sx = w-(w/6); sy = h/2 +50; tx = w - 250; ty = 15; fx = w -w/3; fy = 0;
-             } 
-            
-            var badge = game.add.sprite(bx, by, 'badge' + house);
-            badge.anchor.setTo(0.5, 0.5);
-            
-            var houseSprite = game.add.sprite(sx, sy, house);
-            houseSprite.anchor.setTo(0.5, 0.5);
-            
-            var frame = game.add.sprite(fx, fy, 'frame' + playerNumb);
-            frame.anchor.setTo(0.0, 0.0);
-        
-            nameHouse = game.add.text(tx, ty, house);
-            console.log(playerNumb + 'ok');
-            nameHouse.anchor.setTo(0.5, 0.5);
-     
-            console.log(game_elements['game_elements' + playerNumb]);
-            for (var key in game_elements['game_elements' + playerNumb]) {
-                game_elements['game_elements' + playerNumb][key].destroy();    
-            }
-        
-        
-        });
-    
-    }
-
-
-// Set the choices 
-
-// For player 1
+    createHeader(1);
+    createHeader(2);    
+    // This functi on calls a clickable option in the menu, and decide wich sprites to put depending on the player and the house 
+    // Set the choices
+    // For player 1
 
     choice("atreidesChoice", w/6, h/2, 1, "Atreides");
     choice('freemenChoice', w/6, h/2 + 50, 1, 'Freemen');
@@ -113,9 +50,7 @@ Menu.prototype.create = function () {
     choice('guildChoice2', w-w/6, h/2 + 100, 2, 'Guild');
     choice('Bene_GuesseritChoice2', w-w/6, h/2 + 150, 2, 'Bene_Guesserit');
     choice('EmperorChoice2', w-w/6, h/2 + 200, 2, 'Emperor');
-    choice('HarkonnenChoice2', w-w/6, h/2 + 250, 2, 'Harkonnen');
-
-    
+    choice('HarkonnenChoice2', w-w/6, h/2 + 250, 2, 'Harkonnen');    
 }
 
 
@@ -128,6 +63,66 @@ Menu.prototype.update = function () {
     
 }
  
- window.Menu = Menu;
+window.Menu = Menu;
+ 
+function createHeader(playerNumb){
+
+    if (!game_elements['game_elements' + playerNumb]){
+       game_elements['game_elements' + playerNumb] = {};    
+    }
+    
+    if (playerNumb === 1){
+       x= w/6; y = h/2 -50;
+     } else {
+       x =w-w/6; y = h/2 -50; 
+     }
+    game_elements['game_elements' + playerNumb]['header' + playerNumb] = game.add.text(x, y, 'Player' + playerNumb + ', choose your House!');
+    game_elements['game_elements' + playerNumb]['header' + playerNumb].anchor.setTo(0.5, 0.5);
+}
+
+function choice(var1, x, y, playerNumb, house) {
+
+    if (!game_elements['game_elements' + playerNumb]) {
+       game_elements['game_elements' + playerNumb] = {};
+    }
+
+    //var playersElements = game_elements['game_elements' + playerNumb];
+    game_elements['game_elements' + playerNumb][house]  = game.add.text(x, y, house,{ font: '30px Arial', fill: '#fff' });
+    game_elements['game_elements' + playerNumb][house].anchor.setTo(0.5, 0.5);
+    game_elements['game_elements' + playerNumb][house].inputEnabled = true;
+    game_elements['game_elements' + playerNumb][house].events.onInputDown.add(function() {        
+        if (playerNumb === 1){
+            console.log('player 1 ok');
+            bx = 57; by = 59; sx = (w/3)/2;sy =  h/2 + 50; tx = 250; ty = 15; fx = 0; fy = 0;
+        }
+
+        if (playerNumb === 2) {
+            console.log("player 2 ok");
+            bx = w-57; by = 59; sx = w-(w/6); sy = h/2 +50; tx = w - 250; ty = 15; fx = w -w/3; fy = 0;
+         } 
+        
+        var badge = game.add.sprite(bx, by, 'badge' + house);
+        badge.anchor.setTo(0.5, 0.5);
+        
+        var houseSprite = game.add.sprite(sx, sy, house);
+        houseSprite.anchor.setTo(0.5, 0.5);
+        
+        var frame = game.add.sprite(fx, fy, 'frame' + playerNumb);
+        frame.anchor.setTo(0.0, 0.0);
+
+        nameHouse = game.add.text(tx, ty, house);
+        console.log(playerNumb + 'ok');
+        nameHouse.anchor.setTo(0.5, 0.5);
+
+        console.log(game_elements['game_elements' + playerNumb]);
+        for (var key in game_elements['game_elements' + playerNumb]) {
+            game_elements['game_elements' + playerNumb][key].destroy();    
+        }
+
+        console.log(this.dames);
+        this.dames.displayPlayer(playerNumb);
+    }) 
+};
+
 
 })()
