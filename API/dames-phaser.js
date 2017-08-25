@@ -33,8 +33,8 @@
        game.load.image('backround', 'art/backDame.png');
 
        // frame
-       game.load.image('frameG', 'art/frameDameG.png');
-       game.load.image('frameD', 'art/frameDameD.png');
+       game.load.image('frame1', 'art/frameDameG.png');
+       game.load.image('frame2', 'art/frameDameD.png');
        game.load.image('freemen', 'art/freemen.png');
         game.load.image('atreides', 'art/Atreides.png');
         game.load.image('ship', 'art/assets/games/invaders/player.png');
