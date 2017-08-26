@@ -32,20 +32,20 @@
         // Set the choices
 
         // For player 1
-        choice("atreidesChoice", w/6, h/2, 1, "Atreides");
-        choice('freemenChoice', w/6, h/2 + 50, 1, 'Freemen');
-        choice('guildChoice',  w/6, h/2 + 100, 1, 'Guild');
-        choice('Bene_GuesseritChoice', w/6, h/2 + 150, 1, 'Bene_Guesserit');
-        choice('EmperorChoice', w/6, h/2 + 200, 1, 'Emperor');
-        choice('HarkonnenChoice', w/6, h/2 + 250, 1, 'Harkonnen');
+        choice(w/6, h/2, 1, "Atreides");
+        choice(w/6, h/2 + 50, 1, 'Freemen');
+        choice(w/6, h/2 + 100, 1, 'Guild');
+        choice(w/6, h/2 + 150, 1, 'Bene_Guesserit');
+        choice(w/6, h/2 + 200, 1, 'Emperor');
+        choice(w/6, h/2 + 250, 1, 'Harkonnen');
 
         //For player 2
-        choice("atreidesChoice2", w-w/6, h/2, 2, "Atreides");
-        choice('freemenChoice2', w-w/6, h/2+ 50, 2, 'Freemen');
-        choice('guildChoice2', w-w/6, h/2 + 100, 2, 'Guild');
-        choice('Bene_GuesseritChoice2', w-w/6, h/2 + 150, 2, 'Bene_Guesserit');
-        choice('EmperorChoice2', w-w/6, h/2 + 200, 2, 'Emperor');
-        choice('HarkonnenChoice2', w-w/6, h/2 + 250, 2, 'Harkonnen');    
+        choice(w-w/6, h/2, 2, "Atreides");
+        choice(w-w/6, h/2+ 50, 2, 'Freemen');
+        choice(w-w/6, h/2 + 100, 2, 'Guild');
+        choice(w-w/6, h/2 + 150, 2, 'Bene_Guesserit');
+        choice(w-w/6, h/2 + 200, 2, 'Emperor');
+        choice(w-w/6, h/2 + 250, 2, 'Harkonnen');    
     }
 
 
@@ -75,7 +75,7 @@
         game_elements['game_elements' + playerNumb]['header' + playerNumb].anchor.setTo(0.5, 0.5);
     }
 
-    function choice(var1, x, y, playerNumb, house) {
+    function choice(x, y, playerNumb, house) {
 
         if (!game_elements['game_elements' + playerNumb]) {
            game_elements['game_elements' + playerNumb] = {};
@@ -118,5 +118,5 @@
             this.dames.displayPlayer(playerNumb);
         }) 
     };
-    
+
 })()

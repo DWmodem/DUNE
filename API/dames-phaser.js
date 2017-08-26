@@ -18,6 +18,7 @@
         this.dames = new Dames();
         this.shapes = shapes;
         this.game = phaserGame;
+        this.playerSprites = {};
         game = phaserGame;
     }
 
@@ -31,6 +32,8 @@
         game.load.image('freemen', 'art/freemen.png');
         game.load.image('atreides', 'art/Atreides.png');
         game.load.image('ship', 'art/assets/games/invaders/player.png');
+
+        //Board Squares
         blacksquare = this.shapes.rectangle.define(sqWidth , sqHeight, '#9E6212', 'blacksquare');
         whitesquare = this.shapes.rectangle.define(sqWidth, sqHeight, '#E1932B', 'whitesquare');
     }
@@ -42,18 +45,14 @@
         game.physics.arcade.gravity.y = 150;
         game.physics.arcade.gravity.x = -150;
 
-        for (var x = calculateStarting(game.width, numSq, sqWidth, spcWidth), i = 0; i < numSq; i++, x+=(sqWidth + spcWidth)) {
-            alternator(blacksquare, whitesquare);
-            for (var y = calculateStarting(game.height, numSq, sqWidth, spcWidth), j = 0; j < numSq; j++, y += (sqWidth + spcWidth)) {
-                this.shapes.rectangle.sprite(5, 5, x, y, alternator(blacksquare, whitesquare));
-            }
-        }
+        this.setupBoard();
         this.dames.setup();
     }
 
     DamesER.prototype.displayPlayer = function (playerID) {
-        display(this.dames.board, playerID, "ship");
-        console.log(tokens["player2"]);
+        
+        this.playerSprites[playerID] = display(this.dames.board, playerID, "ship");
+        return this.playerSprites[playerID];
     }
 
     DamesER.prototype.update = function () {
@@ -62,6 +61,24 @@
 
     DamesER.prototype.render = function () {
         
+    }
+
+        // Sets up the empty board of sprites.
+    DamesER.prototype.setupBoard = function() {
+        var boardRectangles = [];
+        var startingX = calculateStarting(game.width, numSq, sqWidth, spcWidth); 
+        var startingY = calculateStarting(game.height, numSq, sqWidth, spcWidth);
+        var tWidth = (sqWidth + spcWidth);
+
+        for (var x = startingX, i = 0; i < numSq; i++, x+= tWidth) {
+            alternator(blacksquare, whitesquare);
+            boardRectangles[x] = [];
+
+            for (var y = startingY, j = 0; j < numSq; j++, y += tWidth) {
+                boardRectangles[x][y] = this.shapes.rectangle.sprite(5, 5, x, y, alternator(blacksquare, whitesquare));
+            }
+        }
+        return boardRectangles;
     }
     
     Rectangle = function(phaserGame) {
@@ -79,9 +96,7 @@
     }
 
     Rectangle.prototype.sprite = function(width, height, x, y, texture) {
-        var sprite;
-        sprite = this.game.add.sprite(x, y, texture);
-        return sprite;
+        return this.game.add.sprite(x, y, texture);
     }
 
     // This is the Constructor for the dames interface. 
@@ -113,7 +128,6 @@
         var deadWidth = (width - boardWidth);
         return deadWidth /2;
     }
-
 
     display = function (board, identity, sprite) {
 

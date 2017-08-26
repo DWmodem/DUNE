@@ -7,19 +7,21 @@ var dames  = new DamesER(game, shapes, menu);
 
 function preload() {
     dames.preload();
-    menu.preload();
+     menu.preload();
 }
 
 function create() {
     dames.create();
-    menu.create();
+     menu.create();
 }
 
 function update() {
     dames.update();
+     menu.update();
 }
 
 function render () {
     dames.render();
+     menu.render();
     
 }
