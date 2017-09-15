@@ -3,25 +3,25 @@
   
     var game_elements = {};
     var w = 1280, h = 720;
-
     var Menu = function (game, dames) {
         this.dames = dames;
+    var house;
     }
 
     Menu.prototype.preload = function () {
-        game.load.image('Menu', 'art/subMenu.png', 426, 240);
-        game.load.image('Freemen', 'art/freemen.png');
-        game.load.image('Atreides', 'art/Atreides.png');
-        game.load.image('Emperor', 'art/Emperor.png');
-        game.load.image('Guild', 'art/Guild.png');
-        game.load.image('Harkonnen', 'art/Harkonnen.png');
-        game.load.image('Bene_Guesserit', 'art/beneguesserit.png');
-        game.load.image('badgeFreemen', 'art/freemen_badge.png');
-        game.load.image('badgeAtreides', 'art/atreides_badge.png');
-        game.load.image('badgeHarkonnen', 'art/harkonnen_badge.png');
-        game.load.image('badgeGuild', 'art/guild_badge.png');
-        game.load.image('badgeEmperor', 'art/emperor_badge.png');
-        game.load.image('badgeBene_Guesserit', 'art/beneguesserit_badge.png');
+        game.load.image('Menu', 'art/dames/subMenu.png', 426, 240);
+        game.load.image('Fremen', 'art/dames/fremen.png');
+        game.load.image('Atreides', 'art/dames/Atreides.png');
+        game.load.image('Emperor', 'art/dames/Emperor.png');
+        game.load.image('Guild', 'art/dames/Guild.png');
+        game.load.image('Harkonnen', 'art/dames/Harkonnen.png');
+        game.load.image('Bene_Guesserit', 'art/dames/beneguesserit.png');
+        game.load.image('badgeFremen', 'art/dames/fremen_badge.png');
+        game.load.image('badgeAtreides', 'art/dames/atreides_badge.png');
+        game.load.image('badgeHarkonnen', 'art/dame/harkonnen_badge.png');
+        game.load.image('badgeGuild', 'art/dames/guild_badge.png');
+        game.load.image('badgeEmperor', 'art/dames/emperor_badge.png');
+        game.load.image('badgeBene_Guesserit', 'art/dames/beneguesserit_badge.png');
     }
 
     Menu.prototype.create = function () {
@@ -33,7 +33,7 @@
 
         // For player 1
         choice(w/6, h/2, 1, "Atreides");
-        choice(w/6, h/2 + 50, 1, 'Freemen');
+        choice(w/6, h/2 + 50, 1, 'Fremen');
         choice(w/6, h/2 + 100, 1, 'Guild');
         choice(w/6, h/2 + 150, 1, 'Bene_Guesserit');
         choice(w/6, h/2 + 200, 1, 'Emperor');
@@ -41,7 +41,7 @@
 
         //For player 2
         choice(w-w/6, h/2, 2, "Atreides");
-        choice(w-w/6, h/2+ 50, 2, 'Freemen');
+        choice(w-w/6, h/2+ 50, 2, 'Fremen');
         choice(w-w/6, h/2 + 100, 2, 'Guild');
         choice(w-w/6, h/2 + 150, 2, 'Bene_Guesserit');
         choice(w-w/6, h/2 + 200, 2, 'Emperor');
@@ -115,8 +115,10 @@
             }
 
             console.log(this.dames);
-            this.dames.displayPlayer(playerNumb);
+            this.dames.displayPlayer(playerNumb, house);
         }) 
     };
+
+
 
 })()

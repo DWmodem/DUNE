@@ -11,36 +11,31 @@
     var alternate = false;
     var sqHeight = sqWidth;
     var w = 1280, h = 720;
-    
+
     // This is the Constructor for the dames interface. 
     // The dames interface constructor owns a copy of the dames game
     DamesER = function (phaserGame, shapes) {
         this.dames = new Dames();
         this.shapes = shapes;
         this.game = phaserGame;
-        this.playerSprites = {};
         game = phaserGame;
     }
 
     DamesER.prototype.preload = function () {
+<<<<<<< Updated upstream
+=======
+        game.load.image('AtreidesToken', 'art/AtreidesToken.png');
+        game.load.image('FreemenToken', 'art/FreemenToken.png');
+
+>>>>>>> Stashed changes
         // Backround
-        game.load.image('backround', 'art/dames/backDame.png');
+        game.load.image('backround', 'art/backDame.png');
 
         // frame
-        game.load.image('frame1', 'art/dames/frameDameG.png');
-        game.load.image('frame2', 'art/dames/frameDameD.png');
-        game.load.image('freemen', 'art/dames/freemen.png');
-        game.load.image('atreides', 'art/dames/Atreides.png');
-        game.load.image('ship', 'art/assets/games/invaders/player.png');
-        game.load.image('AtreidesToken', 'art/dames/AtreidesToken.png');
-        game.load.image('Bene_GuesseritToken', 'art/dames/Bene_GuesseritToken.png');
-        game.load.image('EmperorToken', 'art/dames/EmperorToken.png');
-        game.load.image('GuildToken', 'art/dames/GuildToken.png');
-        game.load.image('FremenToken', 'art/dames/FremenToken.png');
-        game.load.image('HarkonnenToken', 'art/dames/HarkonnenToken.png');
-
-
-        //Board Squares
+        game.load.image('frame1', 'art/frameDameG.png');
+        game.load.image('frame2', 'art/frameDameD.png');
+        game.load.image('freemen', 'art/freemen.png');
+        game.load.image('atreides', 'art/Atreides.png');
         blacksquare = this.shapes.rectangle.define(sqWidth , sqHeight, '#9E6212', 'blacksquare');
         whitesquare = this.shapes.rectangle.define(sqWidth, sqHeight, '#E1932B', 'whitesquare');
     }
@@ -52,15 +47,23 @@
         game.physics.arcade.gravity.y = 150;
         game.physics.arcade.gravity.x = -150;
 
-        this.setupBoard();
+        for (var x = calculateStarting(game.width, numSq, sqWidth, spcWidth), i = 0; i < numSq; i++, x+=(sqWidth + spcWidth)) {
+            alternator(blacksquare, whitesquare);
+            for (var y = calculateStarting(game.height, numSq, sqWidth, spcWidth), j = 0; j < numSq; j++, y += (sqWidth + spcWidth)) {
+                this.shapes.rectangle.sprite(5, 5, x, y, alternator(blacksquare, whitesquare));
+            }
+        }
         this.dames.setup();
     }
 
+<<<<<<< Updated upstream
+    DamesER.prototype.displayPlayer = function (playerID) {
+        display(this.dames.board, playerID, "ship");
+        console.log(tokens["player2"]);
+=======
     DamesER.prototype.displayPlayer = function (playerID, house) {
-    
-
-        this.playerSprites[playerID] = display(this.dames.board, playerID, house + "Token");
-        return this.playerSprites[playerID];
+        display(this.dames.board, playerID, house + 'Token');
+>>>>>>> Stashed changes
     }
 
     DamesER.prototype.update = function () {
@@ -69,24 +72,6 @@
 
     DamesER.prototype.render = function () {
         
-    }
-
-        // Sets up the empty board of sprites.
-   DamesER.prototype.setupBoard = function() {
-        var boardRectangles = [];
-        var startingX = calculateStarting(game.width, numSq, sqWidth, spcWidth); 
-        var startingY = calculateStarting(game.height, numSq, sqWidth, spcWidth);
-        var tWidth = (sqWidth + spcWidth);
-
-        for (var x = startingX, i = 0; i < numSq; i++, x+= tWidth) {
-            alternator(blacksquare, whitesquare);
-            boardRectangles[x] = [];
-
-            for (var y = startingY, j = 0; j < numSq; j++, y += tWidth) {
-                boardRectangles[x][y] = this.shapes.rectangle.sprite(5, 5, x, y, alternator(blacksquare, whitesquare));
-            }
-        }
-        return boardRectangles;
     }
     
     Rectangle = function(phaserGame) {
@@ -104,7 +89,9 @@
     }
 
     Rectangle.prototype.sprite = function(width, height, x, y, texture) {
-        return this.game.add.sprite(x, y, texture);
+        var sprite;
+        sprite = this.game.add.sprite(x, y, texture);
+        return sprite;
     }
 
     // This is the Constructor for the dames interface. 
@@ -136,6 +123,7 @@
         var deadWidth = (width - boardWidth);
         return deadWidth /2;
     }
+
 
     display = function (board, identity, sprite) {
 
