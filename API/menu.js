@@ -18,7 +18,7 @@
         game.load.image('Bene_Guesserit', 'art/dames/beneguesserit.png');
         game.load.image('badgeFremen', 'art/dames/fremen_badge.png');
         game.load.image('badgeAtreides', 'art/dames/atreides_badge.png');
-        game.load.image('badgeHarkonnen', 'art/dame/harkonnen_badge.png');
+        game.load.image('badgeHarkonnen', 'art/dames/harkonnen_badge.png');
         game.load.image('badgeGuild', 'art/dames/guild_badge.png');
         game.load.image('badgeEmperor', 'art/dames/emperor_badge.png');
         game.load.image('badgeBene_Guesserit', 'art/dames/beneguesserit_badge.png');
