@@ -5,8 +5,8 @@
     var w = 1280, h = 720;
     var Menu = function (game, dames) {
         this.dames = dames;
-    var house;
-    }
+    } 
+        var house;
 
     Menu.prototype.preload = function () {
         game.load.image('Menu', 'art/dames/subMenu.png', 426, 240);
