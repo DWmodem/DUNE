@@ -4,8 +4,6 @@
     var game;
     var blacksquare;
     var whitesquare;
-    var tokens = {};
-    var numSq = 8;
     var sqWidth = 50;
     var spcWidth = 0;
     var alternate = false;
@@ -19,7 +17,11 @@
         this.shapes = shapes;
         this.game = phaserGame;
         this.playerSprites = {};
-        game = phaserGame;
+        this.tokens = {};
+        this.boardRectangles = [];
+
+        // Alias
+        game = this.game;
     }
 
     DamesER.prototype.preload = function () {
@@ -29,8 +31,6 @@
         // frame
         game.load.image('frame1', 'art/dames/frameDameG.png');
         game.load.image('frame2', 'art/dames/frameDameD.png');
-        game.load.image('freemen', 'art/dames/freemen.png');
-        game.load.image('atreides', 'art/dames/Atreides.png');
         game.load.image('ship', 'art/assets/games/invaders/player.png');
         game.load.image('AtreidesToken', 'art/dames/AtreidesToken.png');
         game.load.image('Bene_GuesseritToken', 'art/dames/Bene_GuesseritToken.png');
@@ -52,14 +52,13 @@
         game.physics.arcade.gravity.y = 150;
         game.physics.arcade.gravity.x = -150;
 
-        this.setupBoard();
+        this.setupBoard(this.dames.NUM_SQUARES);
         this.dames.setup();
     }
 
     DamesER.prototype.displayPlayer = function (playerID, house) {
     
-
-        this.playerSprites[playerID] = display(this.dames.board, playerID, house + "Token");
+        this.playerSprites[playerID] = this.display(this.dames.board, playerID, house + "Token");
         return this.playerSprites[playerID];
     }
 
@@ -72,23 +71,43 @@
     }
 
         // Sets up the empty board of sprites.
-   DamesER.prototype.setupBoard = function() {
-        var boardRectangles = [];
+   DamesER.prototype.setupBoard = function(numSq) {
         var startingX = calculateStarting(game.width, numSq, sqWidth, spcWidth); 
         var startingY = calculateStarting(game.height, numSq, sqWidth, spcWidth);
         var tWidth = (sqWidth + spcWidth);
 
         for (var x = startingX, i = 0; i < numSq; i++, x+= tWidth) {
             alternator(blacksquare, whitesquare);
-            boardRectangles[x] = [];
+            this.boardRectangles[i] = [];
 
             for (var y = startingY, j = 0; j < numSq; j++, y += tWidth) {
-                boardRectangles[x][y] = this.shapes.rectangle.sprite(5, 5, x, y, alternator(blacksquare, whitesquare));
+                this.boardRectangles[i][j] = this.shapes.rectangle.sprite(5, 5, x, y, alternator(blacksquare, whitesquare));
             }
         }
-        return boardRectangles;
+        return this.boardRectangles;
     }
     
+    DamesER.prototype.display = function (board, identity, sprite) {
+
+        if (!this.tokens["player" + identity]) {
+            this.tokens["player" + identity] = {}
+        }
+
+        var playerTokens = this.tokens["player" + identity];
+        for (var x = 0; x < board.length; x++) {
+            for (var y = 0; y < board[x].length; y++) {
+                if (board[x][y] == identity) {
+                    canvasCoords = ccfbc(x, y, this.dames.NUM_SQUARES);
+                    var currentToken = this.tokens["player" + identity]["token" + x + y] = this.game.add.sprite(canvasCoords.x, canvasCoords.y, sprite);
+                    currentToken.anchor.setTo(0.5,  0.5);
+                    currentToken.inputEnabled = true;
+                    currentToken.input.enableDrag(true, true, true);
+                    currentToken.input.enableSnap(sqWidth, sqHeight, true, true, sqWidth/3.3, sqHeight/1.4);
+                }
+            }
+        }
+    }
+
     Rectangle = function(phaserGame) {
         this.game = phaserGame;
     }
@@ -137,28 +156,9 @@
         return deadWidth /2;
     }
 
-    display = function (board, identity, sprite) {
-
-        if (!tokens["player" + identity]) {
-            tokens["player" + identity] = {}
-        }
-
-        var playerTokens = tokens["player" + identity];
-        for (var x = 0; x < board.length; x++) {
-            for (var y = 0; y < board[x].length; y++) {
-                if (board[x][y] == identity) {
-                    canvasCoords = ccfbc(x, y);
-                    var currentToken = tokens["player" + identity]["token" + x + y] = this.game.add.sprite(canvasCoords.x, canvasCoords.y, sprite);
-                    currentToken.anchor.setTo(0.5,  0.5);
-                    currentToken.inputEnabled = true;
-                    currentToken.input.enableDrag(true);
-                }
-            }
-        }
-    }
-
     // Get canvas coords from board coords
-    ccfbc = function (bx, by) {
+    ccfbc = function (bx, by, numSq = 8) {
+
         var cxs = calculateStarting(game.width, numSq, sqWidth, spcWidth);
         var cys = calculateStarting(game.height, numSq, sqWidth, spcWidth);
         
