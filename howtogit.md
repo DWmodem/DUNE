@@ -68,3 +68,33 @@ Run the command:
 ```
 git clone git@github.com:dwmodem/dune.git
 ```
+
+
+You add files and changes from your working directory into "The Cache" (This is when stuff is green when you do git status)
+```
+git add .
+
+```
+
+
+After things are added to "The Cache" you can commit them to the branch you are on
+```
+git commit -m "I HAVE Made the following changes..."
+```
+
+This will add those changes to your current branch as a commit. You may continue working if you wish, or push your changes to a remote.
+
+If it is the first time you're pushing to a remote, you need to specify which is it!
+```
+git push --set-upstream origin development
+```
+
+This will add the "origin" remote as the default remote to push to for this branch. It will also send it to the remote brach named development. Your branch could be named anything! So I could push some development commits to a master branch with no issue.
+
+You can see the latest changed on your branch by doing 
+```
+git show
+```
+
+This will show you the changes done on the latest commit with lines removed in red, and lines added in green.
+
