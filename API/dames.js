@@ -4,7 +4,7 @@
 
     // Constructor for the Dames game.
     // This is where the properties are defined.
-    Dames = function () {
+    var Dames = function () {
         this.board = [];
         this.EMPTY_SQUARE = 0;
         this.PLAYER_1_PIECE = 1;

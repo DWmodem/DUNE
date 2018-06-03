@@ -1,0 +1,3 @@
+<div id='dames'></div>
+<script src='/DUNE/API/phaser.js'></script>
+<script src='/DUNE/GAME/dune.js'></script>
