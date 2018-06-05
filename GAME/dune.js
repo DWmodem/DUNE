@@ -2,8 +2,12 @@
 
 // The rules check to see if a user has the right to do a certain action.
 // It checks the adjacency of Zones, Moves the Storm, spawns Spice, etc
-function Rules() {
+function Rules(map) {
+    this.map = map;
+}
 
+Rules.prototype.checkAdjacency = function(zone1, zone2) {
+    //...
 }
 
 // The map holds a reference to all the regions.
@@ -26,7 +30,7 @@ Map.prototype.addRegion = function(region) {
 // But the MAP knows that only 18 timezones are allowed,
 // since the numTimezones are a description of the state of the map
 Map.prototype.incrementStorm = function(num) {
-    this.stormIndex  = (num + this.stormIndex) % this.numTimezones
+    this.stormIndex  = (num + this.stormIndex) % this.numTimezones;
     return this;
 }
 
@@ -59,7 +63,7 @@ Region.prototype.getZome = function(timezone) {
 function Zone() {
     this.neighbours = {};
     this.hasSpice   = false;
-    this.isCity     = false
+    this.isCity     = false;
 }
 
 // Zones are not necessarily neighbours with all the zones in their region. They need to know about it.
@@ -100,3 +104,5 @@ myMap.addRegion(theMinorErg);
 
 // Now to do the same with all other regions.
 // it might be wise to make 5-6 regions and test the adjacency algorithms (which have yet to be written..)
+// 
+var theRules = new Rules(myMap);
