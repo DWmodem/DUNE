@@ -64,6 +64,8 @@ function Zone() {
     this.neighbours = {};
     this.hasSpice   = false;
     this.isCity     = false;
+    this.hasCopter  = false;
+
 }
 
 // Zones are not necessarily neighbours with all the zones in their region. They need to know about it.

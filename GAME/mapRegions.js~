@@ -1,0 +1,658 @@
+var regionsMap = [
+                  "brokenLand", "ohGap", "tsimpo", "carthag", "arsunt", "imperialBasin",                  //Zone 0 //NOTE: on garde Oh Gap ou ont met Old Gap?
+		  "arrakeen",                                                                             //1  
+		  "basin", "rimWallWest", "holeInTheRock", "sihayaRidge", "shieldWall", "falseWallEast",  //2
+		  "garaKulon", "pastyMesa", "theMinorErg",                                                //3
+		  "redChasm",                                                                             //4
+		  "southMesa",                                                                            //5
+                  "tueksSietch", "falseWallSouth", "hargPass",                                            //6
+                  "cielagoEast",                                                                          //7
+                  "cielagoNorth", "cielagoDepression", "cielagoSouth",                                    //8
+		                                                                                          //9
+                  "cielagoWest", "meridian",                                                              //10
+                  "windPassNorth", "falseWallWest", "habbanyaRidgeFlat",                                  //11
+    "windPass", "habbanyaErg", "habanyaRidgeSietch",                                 //12 //NOTE: ecrit habanya Ridge sietch sur la carte, un seul n?
+                  "theGreaterFlat",                                                                       //13
+                  "theGreatFlat", "funeralPlain", "bightofTheCliff",                                      //14
+                  "plasticBasin", "sietchTabr", "rockOutcroppings",                                        //15
+		  "haggaBasin",                                                                           //16
+		                                                                                          //17
+		                                                                                          //18
+                  "polarSink"                                                                             //polarSink
+];
+
+console.log(regionsMap);
+
+var regionsMapName = [
+                  "Broken Land", "Oh Gap", "Tsimpo", "Carthag", "Arsunt", "Imperial Basin",                        //Zone 0 //NOTE: on garde Oh Gap ou ont met Old Gap?
+		  "Arrakeen",                                                                                      //1  
+		  "Basin", "Rim Wall West", "Hole In The Rock", "Sihaya Ridge", "Shield Wall", "False Wall East",  //2
+		  "Gara Kulon", "Pasty Mesa", "The Minor Erg",                                                     //3
+		  "Red Chasm",                                                                                     //4
+		  "South Mesa",                                                                                    //5
+                  "Tueks Sietch", "False Wall South", "Harg Pass",                                                 //6
+                  "Cielago East",                                                                                  //7
+                  "Cielago North", "Cielago Depression", "Cielago South",                                          //8
+		                                                                                                   //9
+                  "Cielago West", "Meridian",                                                                      //10
+                  "Wind Pass North", "False Wall West", "Habbanya Ridge Flat",                                     //11
+                  "Wind Pass", "Habbanya Erg", "Habanya Ridge Sietch",                                             //12 //NOTE: ecrit habanya Ridge sur la carte, un seul n?
+                  "The Greater Flat",                                                                              //13
+                  "The Great Flat", "Funeral Plain", "Bight of the Cliff",                                         //14
+                  "Plastic Basin", "Sietch Tabr", "Rock Outcroppings",                                              //15
+		  "Hagga Basin",                                                                                   //16
+		                                                                                                   //17
+		                                                                                                   //18
+                  "Polar Sink"                                                                                     //polarSink
+];
+
+for(var i=0;i < regionsMap.length;i++){
+    regionsMap[i] = new Region(regionsMapName[i]);
+};
+
+//Broken Land
+brokenLand.addZone(new Zone(), 0)
+    .addZone(new Zone(), 17);
+brokenLand.getZone(0).addNeighbour(brokenLand.name, 18);
+brokenLand.getZone(0).addNeighbour(tsimpo.name, 0);
+brokenLand.getZone(0).addNeighbour(ohGap.name, 0);
+brokenLand.getZone(18).addNeighbour(brokenLand.name, 0);
+brokenLand.getZone(18).addNeighbour(rockOutcropings.name, 17);
+brokenLand.getZone(18).addNeighbour(plasticBasin.name, 18);
+brokenLand.getZone(18).addNeighbour(tsimpo.name, 18);
+
+//"Oh Gap"
+ohGap.addZone(new Zone(), 0)
+    .addZone(new Zone(), 1)
+    .addZone(new Zone(), 2);
+ohGap.getZone(0).addNeighbour(ohGap.name, 1);
+ohGap.getZone(0).addNeighbour(tsimpo.name, 0);
+ohGap.getZone(0).addNeighbour(ohGap.name, 0);
+ohGap.getZone(1).addNeighbour(ohGap.name, 0);
+ohGap.getZone(1).addNeighbour(ohGap.name, 2);
+ohGap.getZone(1).addNeighbour(arrakeen.name, 1);
+ohGap.getZone(1).addNeighbour(imperialBasin.name, 1);
+ohGap.getZone(2).addNeighbour(ohGap.name, 1);
+ohGap.getZone(2).addNeighbour(basin.name, 2);
+ohGap.getZone(2).addNeighbour(rimWallWest.name, 2);
+
+//"Tsimpo"
+tsimpo.addZone(new Zone(), 0)
+    .addZone(new Zone(), 17)
+    .addZone(new Zone(), 16);
+tsimpo.getZone(0).addNeighbour(tsimpo.name, 17);
+tsimpo.getZone(0).addNeighbour(brokenLand.name, 0);
+tsimpo.getZone(0).addNeighbour(ohGap.name, 0);
+tsimpo.getZone(0).addNeighbour(imperialBasin.name, 0);
+tsimpo.getZone(0).addNeighbour(carthag.name, 0);
+tsimpo.getZone(17).addNeighbour(tsimpo, 0);
+tsimpo.getZone(17).addNeighbour(tsimpo, 16);
+tsimpo.getZone(17).addNeighbour(haggaBasin.name, 17);
+tsimpo.getZone(17).addNeighbour(brokenLand.name, 17);
+tsimpo.getZone(17).addNeighbour(carthat.name, 17);
+tsimpo.getZone(17).addNeighbour(plasticBasin.name, 17);
+tsimpo.getZone(16).addNeighbour(tsimpo.name, 17);
+tsimpo.getZone(16).addNeighbour(plasticBasin.name, 16);
+tsimpo.getZone(16).addNeighbour(haggaBasin.name, 16);
+
+//"Carthag"
+carthag.addZone(new Zone(), 0);
+carthag.getZone(0).addNeighbour(tsimpo.name, 0);
+carthag.getZone(0).addNeighbour(tsimpo.name, 17);
+carthag.getZone(0).addNeighbour(imperialBasin.name, 0);
+carthag.getZone(0).addNeighbour(arsunt.name, 0);
+carthag.getZone(0).addNeighbour(haggaBasin.name, 17);
+carthag.getZone(0).addNeighbour(haggaBasin.name, 17);
+
+//"Arsunt"
+arsunt.addZone(new Zone(), 0)
+    .addZone(new Zone(), 17);
+arsunt.getZone(0).addNeighbour(arsunt.name, 17);
+arsunt.getZone(0).addNeighbour(carthag.name, 0);
+arsunt.getZone(0).addNeighbour(imperialBasin.name, 0);
+arsunt.getZone(0).addNeighbour(haggaBasin.name, 17);
+arsunt.getZone(0).addNeighbour(polarSink.name, 18);
+arsunt.getZone(17).addNeighbour(arsunt.name, 0);
+arsunt.getZone(17).addNeighbour(haggaBasin.name, 17);
+arsunt.getZone(17).addNeighbour(polarSink.name, 18);
+
+//"Imperial Basin"
+imperialBasin.addZone(new Zone(), 0)
+    .addZone(new Zone(), 1)
+    .addZone(new Zone(), 2);
+imperialBasin.getZone(0).addNeighbour(imperialBasin.name, 1);
+imperialBasin.getZone(0).addNeighbour(tsimpo.name, 0);
+imperialBasin.getZone(0).addNeighbour(carthag.name, 0);
+imperialBasin.getZone(0).addNeighbour(arsunt.name, 0);
+imperialBasin.getZone(1).addNeighbour(polarSink.name, 18);
+imperialBasin.getZone(1).addNeighbour(imperialBasin.name, 0);
+imperialBasin.getZone(1).addNeighbour(imperialBasin.name, 2);
+imperialBasin.getZone(1).addNeighbour(ohGap.name, 1);
+imperialBasin.getZone(1).addNeighbour(arrakeen.name, 1);
+imperialBasin.getZone(1).addNeighbour(rimWallWest.name, 2);
+imperialBasin.getZone(2).addNeighbour(rimWallWest.name, 2);
+imperialBasin.getZone(2).addNeighbour(holeInTheRock.name, 2);
+imperialBasin.getZone(2).addNeighbour(shieldWall.name, 2);
+imperialBasin.getZone(2).addNeighbour(falseWallWest.name, 2);
+imperialBasin.getZone(2).addNeighbour(polarSink.name, 18);
+
+//"Arrakeen"  
+arrakeen.addZone(new Zone(), 1)
+arrakeen.getZone(1).addNeighbour(ohGap.name, 1);
+arrakeen.getZone(1).addNeighbour(imperialBasin.name, 1);
+arrakeen.getZone(1).addNeighbour(rimWallWest.name, 2);
+
+//"Basin"
+basin.addZone(new Zone(), 2)
+basin.getZone(2).addNeighbour(ohGap.name, 2);
+basin.getZone(2).addNeighbour(rimWallWest.name, 2);
+basin.getZone(2).addNeighbour(sihayaRidge.name, 2);
+basin.getZone(2).addNeighbour(holeInTheRock.name, 2);
+
+//"Rim Wall West"
+rimWallWest.addZone(new Zone(), 2)
+rimWallWest.getZone(2).addNeighbour(ohGap.name, 2);
+rimWallWest.getZone(2).addNeighbour(imperialBasin.name, 2);
+rimWallWest.getZone(2).addNeighbour(imperialBasin.name, 1);
+rimWallWest.getZone(2).addNeighbour(arrakeen.name, 1);
+rimWallWest.getZone(2).addNeighbour(basin.name, 2);
+rimWallWest.getZone(2).addNeighbour(holeInTheRock.name, 2);
+
+//"Hole In The Rock"
+holeInTheRock.addZone(new Zone(), 2)
+holeInTheRock.getZone(2).addNeighbour(rimWallWest.name, 2);
+holeInTheRock.getZone(2).addNeighbour(basin.name, 2);
+holeInTheRock.getZone(2).addNeighbour(sihayaRidge.name, 2);
+holeInTheRock.getZone(2).addNeighbour(shieldWall.name, 2);
+holeInTheRock.getZone(2).addNeighbour(imperialBasin.name, 2);
+
+//"Sihaya Ridge"
+sihayaRidge.addZone(new Zone(), 2)
+sihayaRidge.getZone(2).addNeighbour(basin.name, 2);
+sihayaRidge.getZone(2).addNeighbour(holeInTheRock.name, 2);
+sihayaRidge.getZone(2).addNeighbour(shieldWall.name, 1);
+sihayaRidge.getZone(2).addNeighbour(garaKulon.name, 3);
+
+//"Shield Wall"
+shieldWall.addZone(new Zone(), 2)
+    .addZone(new Zone(), 3) 
+shieldWall.getZone(2).addNeighbour(shieldWall.name, 3);
+shieldWall.getZone(2).addNeighbour(imperialBasin.name, 2);
+shieldWall.getZone(2).addNeighbour(holeInTheRock.name, 2);
+shieldWall.getZone(2).addNeighbour(sihayaRidge.name, 2);
+shieldWall.getZone(2).addNeighbour(falseWallWest.name, 2);
+shieldWall.getZone(3).addNeighbour(shieldWall.name, 2);
+shieldWall.getZone(3).addNeighbour(garaKulon.name, 3);
+shieldWall.getZone(3).addNeighbour(pastyMesa.name, 3);
+shieldWall.getZone(3).addNeighbour(theMinorErg.name, 3);
+shieldWall.getZone(3).addNeighbour(falseWallWest.name, 3);
+
+//"False Wall East"
+falseWallEast.addZone(new Zone(), 2)
+    .addZone(new Zone(), 2)
+    .addZone(new Zone(), 3)
+    .addZone(new Zone(), 4)
+    .addZone(new Zone(), 5)
+falseWallEast.getZone(2).addNeighbour(falseWallEast.name, 3);
+falseWallEast.getZone(2).addNeighbour(imperialBasin.name, 2);
+falseWallEast.getZone(2).addNeighbour(shieldWall.name, 2);
+falseWallEast.getZone(2).addNeighbour(polarSink.name, 18);
+falseWallEast.getZone(3).addNeighbour(falseWallEast.name, 2);
+falseWallEast.getZone(3).addNeighbour(falseWallEast.name, 4);
+falseWallEast.getZone(3).addNeighbour(shieldWall.name, 3);
+falseWallEast.getZone(3).addNeighbour(theMinorErg.name, 3);
+falseWallEast.getZone(3).addNeighbour(polarSink.name, 18);
+falseWallEast.getZone(4).addNeighbour(falseWallWest.name, 3);
+falseWallEast.getZone(4).addNeighbour(falseWallWest.name, 5);
+falseWallEast.getZone(4).addNeighbour(theMinorErg.name, 4);
+falseWallEast.getZone(4).addNeighbour(polarSink.name, 18);
+falseWallEast.getZone(5).addNeighbour(falseWallWest.name, 4);
+falseWallEast.getZone(5).addNeighbour(falseWallWest.name, 6);
+falseWallEast.getZone(5).addNeighbour(theMinorErg.name, 5);
+falseWallEast.getZone(5).addNeighbour(polarSink.name, 18);
+falseWallEast.getZone(6).addNeighbour(falseWallWest.name, 5);
+falseWallEast.getZone(6).addNeighbour(hargPass.name, 6);
+falseWallEast.getZone(6).addNeighbour(hargPass.name, 7);
+falseWallEast.getZone(6).addNeighbour(theMinorErg.name, 6);
+falseWallEast.getZone(6).addNeighbour(polarSink.name, 18);
+
+//"Gara Kulon"
+garaKulon.addZone(new Zone(), 3)
+garaKulon.getZone(0).addNeighbour(sihayaRidge.name, 2);
+garaKulon.getZone(0).addNeighbour(shieldWall.name, 3);
+garaKulon.getZone(0).addNeighbour(pastyMesa.name, 3);
+
+//"Pasty Mesa"
+pastyMesa.addZone(new Zone(), 3)
+    .addZone(new Zone(), 4)
+    .addZone(new Zone(), 5)
+    .addZone(new Zone(), 6);
+pastyMesa.getZone(3).addNeighbour(pastyMesa.name, 4);
+pastyMesa.getZone(3).addNeighbour(garaKulon.name, 3);
+pastyMesa.getZone(3).addNeighbour(shieldWall.name, 3);
+pastyMesa.getZone(3).addNeighbour(theMinorErg.name, 3);
+pastyMesa.getZone(4).addNeighbour(pastyMesa.name, 3);
+pastyMesa.getZone(4).addNeighbour(pastyMesa.name, 5);
+pastyMesa.getZone(4).addNeighbour(redChasm.name, 4);
+pastyMesa.getZone(4).addNeighbour(theMinorErg.name, 4);
+pastyMesa.getZone(5).addNeighbour(pastyMesa.name, 4);
+pastyMesa.getZone(5).addNeighbour(pastyMesa.name, 6);
+pastyMesa.getZone(5).addNeighbour(southMesa.name, 5);
+pastyMesa.getZone(5).addNeighbour(theMinorErg.name, 5);
+pastyMesa.getZone(6).addNeighbour(pastyMesa.name, 5);
+pastyMesa.getZone(6).addNeighbour(southMesa.name, 6);
+pastyMesa.getZone(6).addNeighbour(theMinorErg.name, 6);
+pastyMesa.getZone(6).addNeighbour(falseWallSouth.name, 6);
+pastyMesa.getZone(6).addNeighbour(tueksSietch.name, 6);//NOTE:?
+
+//"The Minor Erg"
+theMinorErg.addZone(new Zone(), 3)
+    .addZone(new Zone(), 4)
+    .addZone(new Zone(), 5)
+    .addZone(new Zone(), 6)
+theMinorErg.getZone(3).addNeighbour(theMinorErg.name, 4);
+theMinorErg.getZone(3).addNeighbour(falseWallEast.name, 3);
+theMinorErg.getZone(3).addNeighbour(shieldWall.name, 3);
+theMinorErg.getZone(3).addNeighbour(pastyMesa.name, 3);
+theMinorErg.getZone(4).addNeighbour(theMinorErg.name, 3);
+theMinorErg.getZone(4).addNeighbour(theMinorErg.name, 5);
+theMinorErg.getZone(4).addNeighbour(falseWallEst.name, 4);
+theMinorErg.getZone(4).addNeighbour(pastyMesa.name, 4);
+theMinorErg.getZone(5).addNeighbour(theMinorErg.name, 4);
+theMinorErg.getZone(5).addNeighbour(theMinorErg.name, 6);
+theMinorErg.getZone(5).addNeighbour(falseWallEst.name, 5);
+theMinorErg.getZone(5).addNeighbour(pastyMesa.name, 5);
+theMinorErg.getZone(6).addNeighbour(theMinorErg.name, 5);
+theMinorErg.getZone(6).addNeighbour(falseWallEst.name, 6);
+theMinorErg.getZone(6).addNeighbour(pastyMesa.name, 6);
+theMinorErg.getZone(6).addNeighbour(falseWallSouth.name, 6);
+theMinorErg.getZone(6).addNeighbour(hargPass.name, 6);
+
+// "Red Chasm"
+redChasm.addZone(new Zone(), 4);
+redChasm.getZone(0).addNeighbour(pastyMesa.name, 4);
+redChasm.getZone(0).addNeighbour(southMesa.name, 5);
+
+//"South Mesa" //-------------------------------------------------------------
+southMesa.addZone(new Zone(), 6)
+    .addZone(new Zone(), 7)
+    .addZone(new Zone(), 8)
+southMesa.getZone(0).addNeighbour(southMesa.name, 1);
+southMesa.getZone(0).addNeighbour(tsimpo.name, 0);
+southMesa.getZone(0).addNeighbour(southMesa.name, 0);
+southMesa.getZone(1).addNeighbour(southMesa.name, 0);
+southMesa.getZone(1).addNeighbour(rockOutcropings.name, 17);
+southMesa.getZone(1).addNeighbour(plasticBasin.name, 18);
+southMesa.getZone(1).addNeighbour(rockOutcropings.name, 17);
+southMesa.getZone(1).addNeighbour(plasticBasin.name, 18);
+southMesa.getZone(2).addNeighbour(tsimpo.name, 18);
+southMesa.getZone(2).addNeighbour(tsimpo.name, 18);
+southMesa.getZone(2).addNeighbour(tsimpo.name, 18);
+
+//"Tueks Sietch"
+tueksSietch.addZone(new Zone(), 7)
+tueksSietch.getZone(0).addNeighbour(tueksSietch.name, 1);
+tueksSietch.getZone(0).addNeighbour(tsimpo.name, 0);
+tueksSietch.getZone(0).addNeighbour(tueksSietch.name, 0);
+
+//"False Wall South"
+falseWallSouth.addZone(new Zone(), 7)
+    .addZone(new Zone(), 8)
+falseWallSouth.getZone(0).addNeighbour(falseWallSouth.name, 1);
+falseWallSouth.getZone(0).addNeighbour(tsimpo.name, 0);
+falseWallSouth.getZone(0).addNeighbour(falseWallSouth.name, 0);
+falseWallSouth.getZone(0).addNeighbour(falseWallSouth.name, 1);
+falseWallSouth.getZone(0).addNeighbour(tsimpo.name, 0);
+falseWallSouth.getZone(0).addNeighbour(tsimpo.name, 0);
+falseWallSouth.getZone(1).addNeighbour(falseWallSouth.name, 0);
+falseWallSouth.getZone(1).addNeighbour(rockOutcropings.name, 17);
+falseWallSouth.getZone(1).addNeighbour(plasticBasin.name, 18);
+falseWallSouth.getZone(1).addNeighbour(plasticBasin.name, 18);
+falseWallSouth.getZone(1).addNeighbour(plasticBasin.name, 18);
+
+//"Harg Pass"
+hargPass.addZone(new Zone(), 6)
+    .addZone(new Zone(), 7)
+hargPass.getZone(0).addNeighbour(hargPass.name, 1);
+hargPass.getZone(0).addNeighbour(tsimpo.name, 0);
+hargPass.getZone(0).addNeighbour(hargPass.name, 0);
+hargPass.getZone(0).addNeighbour(hargPass.name, 0);
+hargPass.getZone(1).addNeighbour(hargPass.name, 0);
+hargPass.getZone(1).addNeighbour(rockOutcropings.name, 17);
+hargPass.getZone(1).addNeighbour(plasticBasin.name, 18);
+hargPass.getZone(1).addNeighbour(plasticBasin.name, 18);
+hargPass.getZone(1).addNeighbour(plasticBasin.name, 18);
+
+//"Cielago East"
+cielagoEast.addZone(new Zone(), 7)
+    .addZone(new Zone(), 8)
+cielagoEast.getZone(0).addNeighbour(cielagoEast.name, 1);
+cielagoEast.getZone(0).addNeighbour(tsimpo.name, 0);
+cielagoEast.getZone(0).addNeighbour(cielagoEast.name, 0);
+cielagoEast.getZone(1).addNeighbour(cielagoEast.name, 0);
+cielagoEast.getZone(1).addNeighbour(rockOutcropings.name, 17);
+cielagoEast.getZone(1).addNeighbour(plasticBasin.name, 18);
+cielagoEast.getZone(1).addNeighbour(rockOutcropings.name, 17);
+cielagoEast.getZone(1).addNeighbour(plasticBasin.name, 18);
+
+//"Cielago North"
+cielagoNorth.addZone(new Zone(), 8)
+    .addZone(new Zone(), 9)
+    .addZone(new Zone(), 10)
+cielagoNorth.getZone(0).addNeighbour(cielagoNorth.name, 1);
+cielagoNorth.getZone(0).addNeighbour(tsimpo.name, 0);
+cielagoNorth.getZone(0).addNeighbour(cielagoNorth.name, 0);
+cielagoNorth.getZone(0).addNeighbour(cielagoNorth.name, 1);
+cielagoNorth.getZone(0).addNeighbour(tsimpo.name, 0);
+cielagoNorth.getZone(0).addNeighbour(cielagoNorth.name, 0);
+cielagoNorth.getZone(1).addNeighbour(cielagoNorth.name, 0);
+cielagoNorth.getZone(1).addNeighbour(rockOutcropings.name, 17);
+cielagoNorth.getZone(1).addNeighbour(plasticBasin.name, 18);
+cielagoNorth.getZone(1).addNeighbour(cielagoNorth.name, 0);
+cielagoNorth.getZone(2).addNeighbour(tsimpo.name, 18);
+cielagoNorth.getZone(2).addNeighbour(tsimpo.name, 18);
+cielagoNorth.getZone(2).addNeighbour(cielagoNorth.name, 0);
+cielagoNorth.getZone(2).addNeighbour(cielagoNorth.name, 0);
+cielagoNorth.getZone(2).addNeighbour(cielagoNorth.name, 0);
+
+//"Cielago Depression"
+cielagoDepression.addZone(new Zone(), 8)
+    .addZone(new Zone(), 9)
+    .addZone(new Zone(), 10)
+cielagoDepression.getZone(0).addNeighbour(cielagoDepression.name, 1);
+cielagoDepression.getZone(0).addNeighbour(tsimpo.name, 0);
+cielagoDepression.getZone(0).addNeighbour(cielagoDepression.name, 0);
+cielagoDepression.getZone(0).addNeighbour(cielagoDepression.name, 0);
+cielagoDepression.getZone(1).addNeighbour(cielagoDepression.name, 0);
+cielagoDepression.getZone(1).addNeighbour(rockOutcropings.name, 17);
+cielagoDepression.getZone(1).addNeighbour(plasticBasin.name, 18);
+cielagoDepression.getZone(1).addNeighbour(rockOutcropings.name, 17);
+cielagoDepression.getZone(1).addNeighbour(plasticBasin.name, 18);
+cielagoDepression.getZone(2).addNeighbour(tsimpo.name, 18);
+cielagoDepression.getZone(2).addNeighbour(tsimpo.name, 18);
+cielagoDepression.getZone(2).addNeighbour(tsimpo.name, 18);
+cielagoDepression.getZone(2).addNeighbour(tsimpo.name, 18);
+
+//"Cielago South"
+cielagoSouth.addZone(new Zone(), 8)
+    .addZone(new Zone(), 9);
+cielagoSouth.getZone(0).addNeighbour(cielagoSouth.name, 1);
+cielagoSouth.getZone(0).addNeighbour(tsimpo.name, 0);
+cielagoSouth.getZone(0).addNeighbour(cielagoSouth.name, 0);
+cielagoSouth.getZone(1).addNeighbour(cielagoSouth.name, 0);
+cielagoSouth.getZone(1).addNeighbour(rockOutcropings.name, 17);
+cielagoSouth.getZone(1).addNeighbour(plasticBasin.name, 18);
+
+//"Cielago West"
+cielagoWest.addZone(new Zone(), 10)
+    .addZone(new Zone(), 11);
+cielagoWest.getZone(0).addNeighbour(cielagoWest.name, 1);
+cielagoWest.getZone(0).addNeighbour(tsimpo.name, 0);
+cielagoWest.getZone(0).addNeighbour(cielagoWest.name, 0);
+cielagoWest.getZone(0).addNeighbour(cielagoWest.name, 0);
+cielagoWest.getZone(1).addNeighbour(cielagoWest.name, 0);
+cielagoWest.getZone(1).addNeighbour(rockOutcropings.name, 17);
+cielagoWest.getZone(1).addNeighbour(plasticBasin.name, 18);
+cielagoWest.getZone(1).addNeighbour(plasticBasin.name, 18);
+
+//"Meridian"
+meridian.addZone(new Zone(), 9)
+    .addZone(new Zone(), 10); 
+meridian.getZone(0).addNeighbour(meridian.name, 1);
+meridian.getZone(0).addNeighbour(tsimpo.name, 0);
+meridian.getZone(0).addNeighbour(meridian.name, 0);
+meridian.getZone(1).addNeighbour(meridian.name, 0);
+meridian.getZone(1).addNeighbour(rockOutcropings.name, 17);
+meridian.getZone(1).addNeighbour(plasticBasin.name, 18);
+meridian.getZone(1).addNeighbour(tsimpo.name, 18);
+
+//"Wind Pass North"
+windPassNorth.addZone(new Zone(), 11)
+    .addZone(new Zone(), 12);
+windPassNorth.getZone(0).addNeighbour(windPassNorth.name, 1);
+windPassNorth.getZone(0).addNeighbour(tsimpo.name, 0);
+windPassNorth.getZone(0).addNeighbour(windPassNorth.name, 0);
+windPassNorth.getZone(0).addNeighbour(windPassNorth.name, 0);
+windPassNorth.getZone(1).addNeighbour(windPassNorth.name, 0);
+windPassNorth.getZone(1).addNeighbour(rockOutcropings.name, 17);
+windPassNorth.getZone(1).addNeighbour(plasticBasin.name, 18);
+windPassNorth.getZone(1).addNeighbour(plasticBasin.name, 18);
+
+//"False Wall West"
+falseWallWest.addZone(new Zone(), 11)
+    .addZone(new Zone(), 12)
+    .addZone(new Zone(), 13);
+falseWallWest.getZone(0).addNeighbour(falseWallWest.name, 1);
+falseWallWest.getZone(0).addNeighbour(tsimpo.name, 0);
+falseWallWest.getZone(0).addNeighbour(falseWallWest.name, 0);
+falseWallWest.getZone(1).addNeighbour(falseWallWest.name, 0);
+falseWallWest.getZone(1).addNeighbour(rockOutcropings.name, 17);
+falseWallWest.getZone(1).addNeighbour(plasticBasin.name, 18);
+falseWallWest.getZone(1).addNeighbour(rockOutcropings.name, 17);
+falseWallWest.getZone(1).addNeighbour(plasticBasin.name, 18);
+falseWallWest.getZone(2).addNeighbour(tsimpo.name, 18);
+falseWallWest.getZone(2).addNeighbour(tsimpo.name, 18);
+falseWallWest.getZone(2).addNeighbour(tsimpo.name, 18);
+falseWallWest.getZone(2).addNeighbour(tsimpo.name, 18);
+
+//"Habbanya Ridge Flat"
+habbanyaRidgeFlat.addZone(new Zone(), 11)
+    .addZone(new Zone(), 12);
+habbanyaRidgeFlat.getZone(0).addNeighbour(habbanyaRidgeFlat.name, 1);
+habbanyaRidgeFlat.getZone(0).addNeighbour(tsimpo.name, 0);
+habbanyaRidgeFlat.getZone(0).addNeighbour(habbanyaRidgeFlat.name, 0);
+habbanyaRidgeFlat.getZone(0).addNeighbour(tsimpo.name, 0);
+habbanyaRidgeFlat.getZone(0).addNeighbour(habbanyaRidgeFlat.name, 0);
+habbanyaRidgeFlat.getZone(1).addNeighbour(habbanyaRidgeFlat.name, 0);
+habbanyaRidgeFlat.getZone(1).addNeighbour(rockOutcropings.name, 17);
+habbanyaRidgeFlat.getZone(1).addNeighbour(plasticBasin.name, 18);
+habbanyaRidgeFlat.getZone(1).addNeighbour(habbanyaRidgeFlat.name, 0);
+habbanyaRidgeFlat.getZone(1).addNeighbour(rockOutcropings.name, 17);
+
+//"Wind Pass"
+windPass.addZone(new Zone(), 12)
+    .addZone(new Zone(), 13)
+    .addZone(new Zone(), 14)
+    .addZone(new Zone(), 15);
+windPass.getZone(0).addNeighbour(windPass.name, 1);
+windPass.getZone(0).addNeighbour(tsimpo.name, 0);
+windPass.getZone(0).addNeighbour(windPass.name, 0);
+windPass.getZone(0).addNeighbour(windPass.name, 0);
+windPass.getZone(1).addNeighbour(windPass.name, 0);
+windPass.getZone(1).addNeighbour(rockOutcropings.name, 17);
+windPass.getZone(1).addNeighbour(plasticBasin.name, 18);
+windPass.getZone(1).addNeighbour(windPass.name, 0);
+windPass.getZone(1).addNeighbour(rockOutcropings.name, 17);
+windPass.getZone(2).addNeighbour(tsimpo.name, 18);
+windPass.getZone(2).addNeighbour(tsimpo.name, 18);
+windPass.getZone(2).addNeighbour(tsimpo.name, 18);
+windPass.getZone(2).addNeighbour(tsimpo.name, 18);
+windPass.getZone(3).addNeighbour(tsimpo.name, 18);
+windPass.getZone(3).addNeighbour(tsimpo.name, 18);
+windPass.getZone(3).addNeighbour(tsimpo.name, 18);
+windPass.getZone(3).addNeighbour(tsimpo.name, 18);
+
+//"Habanya Ridge Sietch"
+habanyaRidgeSietch.addZone(new Zone(), 12);
+habanyaRidgeSietch.getZone(0).addNeighbour(habanyaRidgeSietchy.name, 1);
+
+//"Habbanya Erg"
+habbanyaErg.addZone(new Zone(), 12)
+    .addZone(new Zone(), 13);
+habbanyaErg.getZone(0).addNeighbour(habbanyaErg.name, 1);
+habbanyaErg.getZone(0).addNeighbour(tsimpo.name, 0);
+habbanyaErg.getZone(0).addNeighbour(habbanyaErg.name, 0);
+habbanyaErg.getZone(1).addNeighbour(habbanyaErg.name, 0);
+habbanyaErg.getZone(1).addNeighbour(rockOutcropings.name, 17);
+habbanyaErg.getZone(1).addNeighbour(plasticBasin.name, 18);
+habbanyaErg.getZone(1).addNeighbour(plasticBasin.name, 18);
+
+//"The Greater Flat"
+theGreaterFlat.addZone(new Zone(), 13);
+theGreaterFlat.getZone(0).addNeighbour(theGreaterFlat.name, 1);
+theGreaterFlat.getZone(0).addNeighbour(tsimpo.name, 0);
+theGreaterFlat.getZone(0).addNeighbour(theGreaterFlat.name, 0);
+theGreaterFlat.getZone(0).addNeighbour(tsimpo.name, 0);
+
+//"The Great Flat
+theGreatFlat.addZone(new Zone(), 14);
+theGreatFlat.getZone(0).addNeighbour(theGreatFlat.name, 1);
+theGreatFlat.getZone(0).addNeighbour(tsimpo.name, 0);
+theGreatFlat.getZone(0).addNeighbour(theGreatFlat.name, 0);
+theGreatFlat.getZone(0).addNeighbour(tsimpo.name, 0);
+
+//"Funeral Plain"
+funeralPlain.addZone(new Zone(), 14);
+funeralPlain.getZone(1).addNeighbour(plasticBasin.name, 18);
+funeralPlain.getZone(1).addNeighbour(tsimpo.name, 18);
+funeralPlain.getZone(1).addNeighbour(tsimpo.name, 18);
+
+//"Bight of the Cliff"
+blightOfTheCliff.addZone(new Zone(), 14);
+    .addZone(new Zone(), 1)
+blightOfTheCliff.getZone(0).addNeighbour(blightOfTheCliff.name, 1);
+blightOfTheCliff.getZone(0).addNeighbour(tsimpo.name, 0);
+blightOfTheCliff.getZone(1).addNeighbour(blightOfTheCliff.name, 0);
+blightOfTheCliff.getZone(1).addNeighbour(rockOutcropings.name, 17);
+blightOfTheCliff.getZone(1).addNeighbour(plasticBasin.name, 18);
+blightOfTheCliff.getZone(1).addNeighbour(tsimpo.name, 18);
+
+//"Plastic Basin"
+plasticBasin.addZone(new Zone(), 15)
+    .addZone(new Zone(), 16)
+    .addZone(new Zone(), 17);
+plasticBasin.getZone(0).addNeighbour(plasticBasin.name, 1);
+plasticBasin.getZone(0).addNeighbour(tsimpo.name, 0);
+plasticBasin.getZone(0).addNeighbour(plasticBasin.name, 0);
+plasticBasin.getZone(0).addNeighbour(plasticBasin.name, 1);
+plasticBasin.getZone(0).addNeighbour(tsimpo.name, 0);
+plasticBasin.getZone(0).addNeighbour(plasticBasin.name, 0);
+plasticBasin.getZone(0).addNeighbour(plasticBasin.name, 1);
+plasticBasin.getZone(0).addNeighbour(tsimpo.name, 0);
+plasticBasin.getZone(1).addNeighbour(plasticBasin.name, 0);
+plasticBasin.getZone(1).addNeighbour(rockOutcropings.name, 17);
+plasticBasin.getZone(1).addNeighbour(plasticBasin.name, 0);
+plasticBasin.getZone(1).addNeighbour(rockOutcropings.name, 17);
+plasticBasin.getZone(1).addNeighbour(plasticBasin.name, 18);
+plasticBasin.getZone(2).addNeighbour(tsimpo.name, 18);
+plasticBasin.getZone(2).addNeighbour(tsimpo.name, 18);
+plasticBasin.getZone(2).addNeighbour(tsimpo.name, 18);
+
+//"Sietch Tabr"
+sietchTabr.addZone(new Zone(), 15);
+sietchTabr.getZone(0).addNeighbour(sietchTabr.name, 1);
+sietchTabr.getZone(0).addNeighbour(tsimpo.name, 0);
+sietchTabr.getZone(0).addNeighbour(sietchTabr.name, 0);
+
+//"Rock Outcroppings"
+rockOutcroppings.addZone(new Zone(), 15)
+    .addZone(new Zone(), 16);
+rockOutcroppings.getZone(0).addNeighbour(rockOutcroppings.name, 1);
+rockOutcroppings.getZone(0).addNeighbour(tsimpo.name, 0);
+rockOutcroppings.getZone(0).addNeighbour(rockOutcroppings.name, 0);
+rockOutcroppings.getZone(0).addNeighbour(rockOutcroppings.name, 0);
+rockOutcroppings.getZone(1).addNeighbour(rockOutcroppings.name, 0);
+rockOutcroppings.getZone(1).addNeighbour(rockOutcropings.name, 17);
+rockOutcroppings.getZone(1).addNeighbour(plasticBasin.name, 18);
+
+//"Hagga Basin"
+ohGap.addZone(new Zone(), 16)
+    .addZone(new Zone(), 17);
+ohGap.getZone(0).addNeighbour(ohGap.name, 1);
+ohGap.getZone(0).addNeighbour(tsimpo.name, 0);
+ohGap.getZone(0).addNeighbour(ohGap.name, 0);
+ohGap.getZone(0).addNeighbour(ohGap.name, 1);
+ohGap.getZone(0).addNeighbour(tsimpo.name, 0);
+ohGap.getZone(0).addNeighbour(ohGap.name, 0);
+ohGap.getZone(1).addNeighbour(ohGap.name, 0);
+ohGap.getZone(1).addNeighbour(rockOutcropings.name, 17);
+ohGap.getZone(1).addNeighbour(plasticBasin.name, 18);
+ohGap.getZone(1).addNeighbour(rockOutcropings.name, 17);
+ohGap.getZone(1).addNeighbour(plasticBasin.name, 18);
+
+//"Polar Sink"                                 
+ohGap.addZone(new Zone(), 0)
+    .addZone(new Zone(), 1)
+    .addZone(new Zone(), 2)
+    .addZone(new Zone(), 3)
+    .addZone(new Zone(), 4)
+    .addZone(new Zone(), 5)
+    .addZone(new Zone(), 6)
+    .addZone(new Zone(), 7)
+    .addZone(new Zone(), 8)
+    .addZone(new Zone(), 9)
+    .addZone(new Zone(), 10)
+    .addZone(new Zone(), 11)
+    .addZone(new Zone(), 12)
+    .addZone(new Zone(), 13)
+    .addZone(new Zone(), 14)
+    .addZone(new Zone(), 15)
+    .addZone(new Zone(), 16)
+    .addZone(new Zone(), 17)
+    .addZone(new Zone(). 18);
+ohGap.getZone(0).addNeighbour(ohGap.name, 1);
+ohGap.getZone(0).addNeighbour(tsimpo.name, 0);
+ohGap.getZone(0).addNeighbour(ohGap.name, 0);
+ohGap.getZone(1).addNeighbour(ohGap.name, 0);
+ohGap.getZone(1).addNeighbour(rockOutcropings.name, 17);
+ohGap.getZone(1).addNeighbour(plasticBasin.name, 18);
+ohGap.getZone(2).addNeighbour(tsimpo.name, 18);
+ohGap.getZone(2).addNeighbour(tsimpo.name, 18);
+ohGap.getZone(0).addNeighbour(ohGap.name, 1);
+ohGap.getZone(0).addNeighbour(tsimpo.name, 0);
+ohGap.getZone(0).addNeighbour(ohGap.name, 0);
+ohGap.getZone(1).addNeighbour(ohGap.name, 0);
+ohGap.getZone(1).addNeighbour(rockOutcropings.name, 17);
+ohGap.getZone(1).addNeighbour(plasticBasin.name, 18);
+ohGap.getZone(2).addNeighbour(tsimpo.name, 18);
+ohGap.getZone(2).addNeighbour(tsimpo.name, 18);
+ohGap.getZone(0).addNeighbour(ohGap.name, 1);
+ohGap.getZone(0).addNeighbour(tsimpo.name, 0);
+ohGap.getZone(0).addNeighbour(ohGap.name, 0);
+
+/*
+
+theMinorErg.addZone(new Zone(), 5)
+    .addZone(new Zone(), 18)
+    .addZone(new Zone(), 0);
+
+// Each of these zones are neighbours with their immediate friendss.
+    .getZone(0).addNeighbour(brokenLand.name, 18);
+    .getZone(18).addNeighbour(brokenLand.name, 0);
+    .getZone(0).addNeighbour(theMinorErg.name, 7);
+    .getZone(18).addNeighbour(theMinorErg.name, 8);
+    .getZone(18).addNeighbour(theMinorErg.name, 7);
+    .getZone(18).addNeighbour(theMinorErg.name, 7);
+    .getZone(18).addNeighbour(theMinorErg.name, 7);
+
+// And with this we have exactly one region and its zones! But there are more to come.
+// These need to be neighbours with the zones of other regions as well. Swell.
+// And Finally, we can add the minor erg to the Map.
+
+var myMap = new Map();
+myMap.addRegion(brokenLand);
+
+var theMinorErg = new Region("The Minor Erg");
+zone5 = new Zone();
+zone6 = new Zone();
+zone7 = new Zone();
+zone8 = new Zone();
+theMinorErg.addZone(zone5)
+            .addZone(zone6)
+            .addZone(zone7)
+            .addZone(zone8);
+
+// Each of these zones are neighbours with their immediate friends.
+theMinorErg.getZone(5).addNeighbour(theMinorErg.name, 6);
+theMinorErg.getZone(6).addNeighbour(theMinorErg.name, 5);
+theMinorErg.getZone(6).addNeighbour(theMinorErg.name, 7);
+theMinorErg.getZone(7).addNeighbour(theMinorErg.name, 6);
+theMinorErg.getZone(7).addNeighbour(theMinorErg.name, 8);
+theMinorErg.getZone(8).addNeighbour(theMinorErg.name, 7);
+
+// Add  to the Map.
+
+var myMap = new Map();
+myMap.addRegion(theMinorErg);
+*/
+
