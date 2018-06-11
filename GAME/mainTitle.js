@@ -18,6 +18,8 @@ var mainTitle = new Phaser.Class({
     {
        var mainBackground =  this.add.sprite(0, 0, 'backMain');
 	mainBackground.setOrigin(0, 0);
+	mainBackground.displayWidth = (window.innerWidth * window.devicePixelRatio);
+	mainBackground.displayHeight = (window.innerHeight * window.devicePixelRatio);
 	var cTC = this.add.text(config.width/2, config.height/2, "Press to continue", { fontSize: "40px", fill: "#fff"}).setInteractive();
 	cTC.on('pointerdown', function () {
 
@@ -112,8 +114,8 @@ var template = new Phaser.Class({
 
 let config = {
     type: Phaser.AUTO,
-    width: 1000,
-    height: 1000,
+    width: window.innerWidth * window.devicePixelRatio,
+    height: window.innerHeight * window.devicePixelRatio,
     backgroundColor: '#000000',
     scene: [ mainTitle, mainMenu]
 };
