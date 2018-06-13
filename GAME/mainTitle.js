@@ -60,9 +60,9 @@ var mainMenu = new Phaser.Class({
 
     create: function ()
     {
-	var newGame = this.add.text(config.width/2, 100, "New Game", { fontSize: "40px", fill: "#fff"}).setInteractive();
-	newGame.setOrigin(0.5, 0.5);
-	newGame.on('pointerdown', function () {
+	var newG = this.add.text(config.width/2, 100, "New Game", { fontSize: "40px", fill: "#fff"}).setInteractive();
+	newG.setOrigin(0.5, 0.5);
+	newG.on('pointerdown', function () {
 
             console.log('Main menu to new game');
 
@@ -108,12 +108,119 @@ var newGame = new Phaser.Class({
 
     preload: function ()
     {
-
+	
     },
 
     create: function ()
     {
+	console.log("newGame");
+	var chooseP = this.add.text(500, 500, "Choose Player", { fontSize: "40px", fill: "#fff"}).setInteractive();
+	chooseP.setOrigin(0.5, 0.5);
+	chooseP.on('pointerdown', function () {
 
+	    console.log('New game to Choose Player');
+
+	    this.scene.start('Choose player');
+        }, this);
+    },
+
+    update: function ()
+    {
+	
+    },
+
+});
+
+var choosePlayer = new Phaser.Class({
+
+    Extends: Phaser.Scene,
+
+    initialize:
+
+    function choosePlayer ()
+    {
+        Phaser.Scene.call(this, { key: 'Choose player' });
+    },
+
+    preload: function ()
+    {
+	this.load.image('Atreides', 'ART/images/houses/Atreides.png');
+	this.load.image('Bene Guesserit', 'ART/images/houses/BeneGuesserit.png');
+	this.load.image('Emperor', 'ART/images/houses/Emperor.png');
+	this.load.image('Fremen', 'ART/images/houses/fremen.png');
+	this.load.image('Guild', 'ART/images/houses/Guild.png');
+	this.load.image('Harkonnen', 'ART/images/houses/Harkonnen.png');
+
+	this.load.image('badge Atreides', 'ART/images/houses/atreides_badge.png');
+	this.load.image('badge Bene Guesserit', 'ART/images/houses/beneguesserit_badge.png');
+	this.load.image('badge Emperor', 'ART/images/houses/emperor_badge.png');
+	this.load.image('badge Fremen', 'ART/images/houses/fremen_badge.png');
+	this.load.image('badge Guild', 'ART/images/houses/guild_badge.png');
+	this.load.image('badge Harkonnen', 'ART/images/houses/harkonnen_badge.png');
+	
+	this.load.image('cadre', 'ART/images/houses/cadre.png');
+	this.load.image('description', 'ART/images/houses/description.png');
+    },
+
+    create: function ()
+    {
+	var houses = ["Atreides","Bene Guesserit", "Emperor", "Fremen", "Guild", "Harkonnen"];
+	var housesImg =  ["Atreides","Bene Guesserit", "Emperor", "Fremen", "Guild", "Harkonnen"];
+	var houseBadge = ["Atreides","Bene Guesserit", "Emperor", "Fremen", "Guild", "Harkonnen"];
+	var houseid = 0;
+	var positionX = 0;
+	var positionY = 0;
+	var choixHouse = "vide";
+	
+	houseBadge[0].description = "Description";
+	houseBadge[1].description = "Description";
+	houseBadge[2].description = "Description";
+	houseBadge[3].description = "Description";
+	houseBadge[4].description = "Description";
+	houseBadge[5].description = "Description";
+	
+
+	for(var i=0;i<2;i++){
+	    for(var j=0;j<3; j++){
+		housesImg[houseid] = this.add.sprite(positionX, positionY, houses[houseid]).setInteractive();
+		housesImg[houseid].setOrigin(0, 0);
+		housesImg[houseid].displayWidth = ((window.innerWidth * window.devicePixelRatio)/3);
+		housesImg[houseid].displayHeight = ((window.innerHeight * window.devicePixelRatio)/2);
+		housesImg[houseid].house = houses[houseid];
+		
+		housesImg[houseid].on('pointerdown', function () {
+		    
+		    for(var k=0;k<6;k++){
+			housesImg[k].setTint(0xFFFFFF);
+		    };
+		    this.setTint(0xff0000);
+		    choixHouse = this.house;
+		    console.log(choixHouse);
+		});
+		
+		houseBadge[houseid] = this.add.sprite(positionX, positionY, "badge " + houses[houseid]).setInteractive();
+		houseBadge[houseid].setOrigin(0, 0);
+		houseBadge[houseid].displayWidth = 135;
+		houseBadge[houseid].displayHeight = 80;
+/*
+		houseBadge[houseid].on('pointerdown', function () {
+
+		    var descriptionBack = this.add.sprite( 0, 0, 'description');//Arrive pas faire apparaitre un sprite comme actions.
+		    descriptionBack.setOrigin(0, 0);
+
+		});
+*/
+		var cadre = this.add.sprite(positionX, positionY, "cadre");
+		cadre.setOrigin(0, 0);
+		cadre.displayWidth = ((window.innerWidth * window.devicePixelRatio)/3);
+		cadre.displayHeight = ((window.innerHeight * window.devicePixelRatio)/2);
+	
+		positionX += (window.innerWidth * window.devicePixelRatio)/3;
+		houseid++;
+	    }
+	    positionY += (window.innerHeight * window.devicePixelRatio)/2;
+	    positionX = 0;
+	};
     },
 
     update: function ()
@@ -156,7 +263,7 @@ let config = {
     width: window.innerWidth * window.devicePixelRatio,
     height: window.innerHeight * window.devicePixelRatio,
     backgroundColor: '#000000',
-    scene: [ mainTitle, mainMenu]
+    scene: [ mainTitle, mainMenu, newGame, choosePlayer]
 };
 
 let game = new Phaser.Game(config);
