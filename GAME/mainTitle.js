@@ -12,11 +12,22 @@ var mainTitle = new Phaser.Class({
     preload: function ()
     {
         this.load.image('backMain', 'ART/images/main.jpg');
+	this.load.audio("Main Title", [
+	    "SOUND/musics/DuneMainTheme.mp3",
+	    "SOUND/musics/DuneMainTheme.ogg",
+	]);
     },
 
     create: function ()
     {
-       var mainBackground =  this.add.sprite(0, 0, 'backMain');
+	var mainTheme = this.sound.add("Main Title");
+
+	mainTheme.play({
+	    loop: true
+	});
+
+
+	var mainBackground =  this.add.sprite(0, 0, 'backMain');
 	mainBackground.setOrigin(0, 0);
 	mainBackground.displayWidth = (window.innerWidth * window.devicePixelRatio);
 	mainBackground.displayHeight = (window.innerHeight * window.devicePixelRatio);
@@ -24,7 +35,7 @@ var mainTitle = new Phaser.Class({
 	cTC.on('pointerdown', function () {
 
             console.log('Main title to main menu');
-
+	    mainTheme.stop();
             this.scene.start('Main Menu');
         }, this);
     }
@@ -55,7 +66,7 @@ var mainMenu = new Phaser.Class({
 
             console.log('Main menu to new game');
 
-            this.scene.start('newGame');
+            this.scene.start('New Game');
         }, this);
 	
 	var contGame = this.add.text(config.width/2, 200, "Continue", { fontSize: "40px", fill: "#fff"}).setInteractive();
@@ -81,6 +92,34 @@ var mainMenu = new Phaser.Class({
     {
   
     }
+
+});
+
+var newGame = new Phaser.Class({
+
+    Extends: Phaser.Scene,
+
+    initialize:
+
+    function newGame ()
+    {
+        Phaser.Scene.call(this, { key: 'New Game' });
+    },
+
+    preload: function ()
+    {
+
+    },
+
+    create: function ()
+    {
+
+    },
+
+    update: function ()
+    {
+	
+    },
 
 });
 
