@@ -202,14 +202,14 @@ var choosePlayer = new Phaser.Class({
 		houseBadge[houseid].setOrigin(0, 0);
 		houseBadge[houseid].displayWidth = 135;
 		houseBadge[houseid].displayHeight = 80;
-/*
+
 		houseBadge[houseid].on('pointerdown', function () {
 
 		    var descriptionBack = this.add.sprite( 0, 0, 'description');//Arrive pas faire apparaitre un sprite comme actions.
 		    descriptionBack.setOrigin(0, 0);
 
 		});
-*/
+
 		var cadre = this.add.sprite(positionX, positionY, "cadre");
 		cadre.setOrigin(0, 0);
 		cadre.displayWidth = ((window.innerWidth * window.devicePixelRatio)/3);
