@@ -44,8 +44,8 @@ function Region(name) {
     this.zones = [];
 }
 
-Region.prototype.addZone = function(zone, timeZone) {
-    this.zones[timeZone];
+Region.prototype.addZone = function(zone, timezone) {
+    this.zones[timezone] = zone;
     return this;
 }
 
@@ -54,14 +54,14 @@ Region.prototype.setName = function(name) {
     return this;
 }
 
-Region.prototype.getZome = function(timezone) {
-    return this.zone[timezone];
+Region.prototype.getZone = function(timezone) {
+    return this.zones[timezone];
 }
 
 // Zones take care of the granular knowledge.
 // Whether the zone is a city, or if it has spice, or if it has other qualities that may be relevant to the rules
 function Zone() {
-    this.neighbours = {};
+    this.neighbours = [];
     this.hasSpice   = false;
     this.isCity     = false;
     this.hasCopter  = false;
@@ -70,7 +70,7 @@ function Zone() {
 
 // Zones are not necessarily neighbours with all the zones in their region. They need to know about it.
 // Zones neighbours are just a list of the region name, and the timezone of that region.
-Zone.prototype.addNeighbour = function(name, timeZone) {
+Zone.prototype.addNeighbour = function(name, timezone) {
     this.neighbours.push([name, timezone]);
     return this;
 }
@@ -83,10 +83,10 @@ zone5 = new Zone();
 zone6 = new Zone();
 zone7 = new Zone();
 zone8 = new Zone();
-theMinorErg.addZone(zone5)
-            .addZone(zone6)
-            .addZone(zone7)
-            .addZone(zone8);
+theMinorErg.addZone(zone5, 5)
+            .addZone(zone6, 6)
+            .addZone(zone7, 7)
+            .addZone(zone8, 8);
 
 // Each of these zones are neighbours with their immediate friendos.
 theMinorErg.getZone(5).addNeighbour(theMinorErg.name, 6);
