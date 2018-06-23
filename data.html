@@ -35,32 +35,33 @@ console.log('allo')
 //                       'Name'    Spice, max cards, cards,           Bank units, Bank special      Units in field  Special in field
 	var PlayerInfoArray = { "Atredies" :  [5,4,['Poison attack','Hajr'],       15, 0, [5,'Cielago north'],               []],
 							"Harkonnen" : [8,7,['Projetctile defense','Karma'],15, 0, [5,'Red Chasm'],                   []],
-							"Fremen" :    [3,4,['Poop'],                        8, 1, [3,'Cielago South',6,'Polar Sink'],[2,'Cielago South']]]
+							"Fremen" :    [3,4,['Poop'],                        8, 1, [3,'Cielago South',6,'Polar Sink'],[2,'Cielago South']]
 						
 	};
 
-	var PlayerInfoDictionary = { 	"Atredies" : { "Spice" : [],
-												  "maxCards" [],
-												  "cards" [],
-												  "Units" [],
-												  "Special Units"[],
-												  "Field Units" [],
-												  "Field Secial Units" []},
+	var PlayerInfoDictionary = { 	"Atredies" : { "Spice" : 5,
+												  "maxCards" : [],
+												  "cards" : [],
+												  "Units" : [],
+												  "Special Units" : [],
+												  "Field Units" : [],
+												  "Field Secial Units" : []},
 
-									"Harkonnen" : "Spice" : []
-												  "maxCards" []
-												  "cards" []
-												  "Units" []
-												  "Special Units"[]
-												  "Field Units" []
-												  "Field Secial Units" [],
-									"Fremen" :    "Spice" : []
-												  "maxCards" []
-												  "cards" []
-												  "Units" []
-												  "Special Units"[]
-												  "Field Units" []
-												  "Field Secial Units" [],
+									"Harkonnen" : { "Spice" : 10,
+												  "maxCards" : [],
+												  "cards" : [],
+												  "Units" : [],
+												  "Special Units" : [],
+												  "Field Units" : [],
+												  "Field Secial Units" : []},
+
+									"Fremen" :    { "Spice" : 3,
+												  "maxCards" : [],
+												  "cards" : [],
+												  "Units" : [],
+												  "Special Units" : [],
+												  "Field Units" : [],
+												  "Field Secial Units" : []}
 	};
 
 
@@ -68,6 +69,9 @@ console.log('allo')
 				 "Player"  : [],
 				 "Discard" : [],
 	};
+
+
+	console.log(PlayerInfoDictionary.Atredies.Spice)
 
 
 </script>
