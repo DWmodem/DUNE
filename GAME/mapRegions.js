@@ -1,106 +1,108 @@
-var regionsMap = [
-                  "brokenLand", "ohGap", "tsimpo", "carthag", "arsunt", "imperialBasin",                  //Zone 0 //NOTE: on garde Oh Gap ou ont met Old Gap?
-		  "arrakeen",                                                                             //1  
-		  "basin", "rimWallWest", "holeInTheRock", "sihayaRidge", "shieldWall", "falseWallEast",  //2
-		  "garaKulon", "pastyMesa", "theMinorErg",                                                //3
-		  "redChasm",                                                                             //4
-		  "southMesa",                                                                            //5
-                  "tueksSietch", "falseWallSouth", "hargPass",                                            //6
-                  "cielagoEast",                                                                          //7
-                  "cielagoNorth", "cielagoDepression", "cielagoSouth",                                    //8
-		                                                                                          //9
-                  "cielagoWest", "meridian",                                                              //10
-                  "windPassNorth", "falseWallWest", "habbanyaRidgeFlat",                                  //11
-    "windPass", "habbanyaErg", "habanyaRidgeSietch",                                 //12 //NOTE: ecrit habanya Ridge sietch sur la carte, un seul n?
-                  "theGreaterFlat",                                                                       //13
-                  "theGreatFlat", "funeralPlain", "bightofTheCliff",                                      //14
-                  "plasticBasin", "sietchTabr", "rockOutcroppings",                                        //15
-		  "haggaBasin",                                                                           //16
-		                                                                                          //17
-		                                                                                          //18
-                  "polarSink"                                                                             //polarSink
+var regionsMap = {};
+var regionsMapNames = [
+    "brokenLand", "ohGap", "tsimpo", "carthag", "arsunt", "imperialBasin",                  //Zone 0 //NOTE: on garde Oh Gap ou ont met Old Gap?
+    "arrakeen",                                                                             //1  
+    "basin", "rimWallWest", "holeInTheRock", "sihayaRidge", "shieldWall", "falseWallEast",  //2
+    "garaKulon", "pastyMesa", "theMinorErg",                                                //3
+    "redChasm",                                                                             //4
+    "southMesa",                                                                            //5
+    "tueksSietch", "falseWallSouth", "hargPass",                                            //6
+    "cielagoEast",                                                                          //7
+    "cielagoNorth", "cielagoDepression", "cielagoSouth",                                    //8
+    //9
+    "cielagoWest", "meridian",                                                              //10
+    "windPassNorth", "falseWallWest", "habbanyaRidgeFlat",                                  //11
+    "windPass", "habbanyaErg", "habanyaRidgeSietch",                                        //12 //NOTE: ecrit habanya Ridge sietch sur la carte, un seul n?
+    "theGreaterFlat",                                                                       //13
+    "theGreatFlat", "funeralPlain", "bightofTheCliff",                                      //14
+    "plasticBasin", "sietchTabr", "rockOutcroppings",                                       //15
+    "haggaBasin",                                                                           //16
+    //17
+    "rockOutcropings",//18
+    "polarSink"                                                                             //polarSink
 ];
 
 var regionsMapName = [
-                  "Broken Land", "Oh Gap", "Tsimpo", "Carthag", "Arsunt", "Imperial Basin",                        //Zone 0 //NOTE: on garde Oh Gap ou ont met Old Gap?
-		  "Arrakeen",                                                                                      //1  
-		  "Basin", "Rim Wall West", "Hole In The Rock", "Sihaya Ridge", "Shield Wall", "False Wall East",  //2
-		  "Gara Kulon", "Pasty Mesa", "The Minor Erg",                                                     //3
-		  "Red Chasm",                                                                                     //4
-		  "South Mesa",                                                                                    //5
-                  "Tueks Sietch", "False Wall South", "Harg Pass",                                                 //6
-                  "Cielago East",                                                                                  //7
-                  "Cielago North", "Cielago Depression", "Cielago South",                                          //8
-		                                                                                                   //9
-                  "Cielago West", "Meridian",                                                                      //10
-                  "Wind Pass North", "False Wall West", "Habbanya Ridge Flat",                                     //11
-                  "Wind Pass", "Habbanya Erg", "Habanya Ridge Sietch",                                             //12 //NOTE: ecrit habanya Ridge sur la carte, un seul n?
-                  "The Greater Flat",                                                                              //13
-                  "The Great Flat", "Funeral Plain", "Bight of the Cliff",                                         //14
-                  "Plastic Basin", "Sietch Tabr", "Rock Outcroppings",                                              //15
-		  "Hagga Basin",                                                                                   //16
-		                                                                                                   //17
-		                                                                                                   //18
-                  "Polar Sink"                                                                                     //polarSink
+    "Broken Land", "Oh Gap", "Tsimpo", "Carthag", "Arsunt", "Imperial Basin",                        //Zone 0 //NOTE: on garde Oh Gap ou ont met Old Gap?
+    "Arrakeen",                                                                                      //1  
+    "Basin", "Rim Wall West", "Hole In The Rock", "Sihaya Ridge", "Shield Wall", "False Wall East",  //2
+    "Gara Kulon", "Pasty Mesa", "The Minor Erg",                                                     //3
+    "Red Chasm",                                                                                     //4
+    "South Mesa",                                                                                    //5
+    "Tueks Sietch", "False Wall South", "Harg Pass",                                                 //6
+    "Cielago East",                                                                                  //7
+    "Cielago North", "Cielago Depression", "Cielago South",                                          //8
+    //9
+    "Cielago West", "Meridian",                                                                      //10
+    "Wind Pass North", "False Wall West", "Habbanya Ridge Flat",                                     //11
+    "Wind Pass", "Habbanya Erg", "Habanya Ridge Sietch",                                             //12 //NOTE: ecrit habanya Ridge sur la carte, un seul n?
+    "The Greater Flat",                                                                              //13
+    "The Great Flat", "Funeral Plain", "Bight of the Cliff",                                         //14
+    "Plastic Basin", "Sietch Tabr", "Rock Outcroppings",                                              //15
+    "Hagga Basin",                                                                                   //16
+    //17
+    //18
+    "Polar Sink"                                                                                     //polarSink
 ];
 
 //Add regions
 
-for(var i=0;i < regionsMap.length;i++){
-    regionsMap[i] = new Region(regionsMapName[i]);
+for (var i = 0; i < regionsMapNames.length; i++) {
+    regionsMap[regionsMapNames[i]] = new Region(regionsMapName[i]);
 };
 
 //Add neighbours
 
 //Broken Land
-brokenLand.addZone(new Zone(), 0)
-    .addZone(new Zone(), 17);
-brokenLand.getZone(0).addNeighbour(brokenLand.name, 18);
-brokenLand.getZone(0).addNeighbour(tsimpo.name, 0);
-brokenLand.getZone(0).addNeighbour(ohGap.name, 0);
-brokenLand.getZone(18).addNeighbour(brokenLand.name, 0);
-brokenLand.getZone(18).addNeighbour(rockOutcropings.name, 17);
-brokenLand.getZone(18).addNeighbour(plasticBasin.name, 18);
-brokenLand.getZone(18).addNeighbour(tsimpo.name, 18);
+regionsMap['brokenLand'].addZone(new Zone(), 0)
+                        .addZone(new Zone(), 18);
+regionsMap['brokenLand'].getZone(0).addNeighbour(regionsMap['brokenLand'].name, 18);
+regionsMap['brokenLand'].getZone(0).addNeighbour(regionsMap['tsimpo'].name, 0);
+regionsMap['brokenLand'].getZone(0).addNeighbour(regionsMap['ohGap'].name, 0);
+regionsMap['brokenLand'].getZone(18).addNeighbour(regionsMap['brokenLand'].name, 0);
+regionsMap['brokenLand'].getZone(18).addNeighbour(regionsMap['rockOutcropings'].name, 17);
+regionsMap['brokenLand'].getZone(18).addNeighbour(regionsMap['plasticBasin'].name, 18);
+regionsMap['brokenLand'].getZone(18).addNeighbour(regionsMap['tsimpo'].name, 18);
 
+console.log(regionsMap);
 //"Oh Gap"
-ohGap.addZone(new Zone(), 0)
+regionsMap['ohGap'].addZone(new Zone(), 0)
     .addZone(new Zone(), 1)
     .addZone(new Zone(), 2);
-ohGap.getZone(0).addNeighbour(ohGap.name, 1);
-ohGap.getZone(0).addNeighbour(tsimpo.name, 0);
-ohGap.getZone(0).addNeighbour(ohGap.name, 0);
-ohGap.getZone(1).addNeighbour(ohGap.name, 0);
-ohGap.getZone(1).addNeighbour(ohGap.name, 2);
-ohGap.getZone(1).addNeighbour(arrakeen.name, 1);
-ohGap.getZone(1).addNeighbour(imperialBasin.name, 1);
-ohGap.getZone(2).addNeighbour(ohGap.name, 1);
-ohGap.getZone(2).addNeighbour(basin.name, 2);
-ohGap.getZone(2).addNeighbour(rimWallWest.name, 2);
+regionsMap['ohGap'].getZone(0).addNeighbour(regionsMap['ohGap'].name, 1);
+regionsMap['ohGap'].getZone(0).addNeighbour(regionsMap['tsimpo'].name, 0);
+regionsMap['ohGap'].getZone(0).addNeighbour(regionsMap['ohGap'].name, 0);
+regionsMap['ohGap'].getZone(1).addNeighbour(regionsMap['ohGap'].name, 0);
+regionsMap['ohGap'].getZone(1).addNeighbour(regionsMap['ohGap'].name, 2);
+regionsMap['ohGap'].getZone(1).addNeighbour(arrakeen.name, 1);
+regionsMap['ohGap'].getZone(1).addNeighbour(imperialBasin.name, 1);
+regionsMap['ohGap'].getZone(2).addNeighbour(regionsMap['ohGap'].name, 1);
+regionsMap['ohGap'].getZone(2).addNeighbour(basin.name, 2);
+regionsMap['ohGap'].getZone(2).addNeighbour(rimWallWest.name, 2);
 
-//"Tsimpo"
-tsimpo.addZone(new Zone(), 0)
+//"regionsMap['tsimpo']"
+regionsMap['tsimpo'].addZone(new Zone(), 0)
     .addZone(new Zone(), 17)
     .addZone(new Zone(), 16);
-tsimpo.getZone(0).addNeighbour(tsimpo.name, 17);
-tsimpo.getZone(0).addNeighbour(brokenLand.name, 0);
-tsimpo.getZone(0).addNeighbour(ohGap.name, 0);
-tsimpo.getZone(0).addNeighbour(imperialBasin.name, 0);
-tsimpo.getZone(0).addNeighbour(carthag.name, 0);
-tsimpo.getZone(17).addNeighbour(tsimpo, 0);
-tsimpo.getZone(17).addNeighbour(tsimpo, 16);
-tsimpo.getZone(17).addNeighbour(haggaBasin.name, 17);
-tsimpo.getZone(17).addNeighbour(brokenLand.name, 17);
-tsimpo.getZone(17).addNeighbour(carthag.name, 17);
-tsimpo.getZone(17).addNeighbour(plasticBasin.name, 17);
-tsimpo.getZone(16).addNeighbour(tsimpo.name, 17);
-tsimpo.getZone(16).addNeighbour(plasticBasin.name, 16);
-tsimpo.getZone(16).addNeighbour(haggaBasin.name, 16);
+regionsMap['tsimpo'].getZone(0).addNeighbour(regionsMap['tsimpo'].name, 17);
+regionsMap['tsimpo'].getZone(0).addNeighbour(brokenLand.name, 0);
+regionsMap['tsimpo'].getZone(0).addNeighbour(regionsMap['ohGap'].name, 0);
+regionsMap['tsimpo'].getZone(0).addNeighbour(imperialBasin.name, 0);
+regionsMap['tsimpo'].getZone(0).addNeighbour(carthag.name, 0);
+regionsMap['tsimpo'].getZone(17).addNeighbour(regionsMap['tsimpo'], 0);
+regionsMap['tsimpo'].getZone(17).addNeighbour(regionsMap['tsimpo'], 16);
+regionsMap['tsimpo'].getZone(17).addNeighbour(haggaBasin.name, 17);
+regionsMap['tsimpo'].getZone(17).addNeighbour(brokenLand.name, 17);
+regionsMap['tsimpo'].getZone(17).addNeighbour(carthag.name, 17);
+regionsMap['tsimpo'].getZone(17).addNeighbour(plasticBasin.name, 17);
+regionsMap['tsimpo'].getZone(16).addNeighbour(regionsMap['tsimpo'].name, 17);
+regionsMap['tsimpo'].getZone(16).addNeighbour(plasticBasin.name, 16);
+regionsMap['tsimpo'].getZone(16).addNeighbour(haggaBasin.name, 16);
 
 //"Carthag"
 carthag.addZone(new Zone(), 0);
-carthag.getZone(0).addNeighbour(tsimpo.name, 0);
-carthag.getZone(0).addNeighbour(tsimpo.name, 17);
+carthag.getZone(0).addNeighbour(regionsMap['tsimpo'].name, 0);
+carthag.getZone(0).addNeighbour(regionsMap['tsimpo'].name, 17);
 carthag.getZone(0).addNeighbour(imperialBasin.name, 0);
 carthag.getZone(0).addNeighbour(arsunt.name, 0);
 carthag.getZone(0).addNeighbour(haggaBasin.name, 17);
@@ -129,7 +131,7 @@ imperialBasin.getZone(0).addNeighbour(arsunt.name, 0);
 imperialBasin.getZone(1).addNeighbour(polarSink.name, 18);
 imperialBasin.getZone(1).addNeighbour(imperialBasin.name, 0);
 imperialBasin.getZone(1).addNeighbour(imperialBasin.name, 2);
-imperialBasin.getZone(1).addNeighbour(ohGap.name, 1);
+imperialBasin.getZone(1).addNeighbour(regionsMap['ohGap'].name, 1);
 imperialBasin.getZone(1).addNeighbour(arrakeen.name, 1);
 imperialBasin.getZone(1).addNeighbour(rimWallWest.name, 2);
 imperialBasin.getZone(2).addNeighbour(rimWallWest.name, 2);
@@ -140,20 +142,20 @@ imperialBasin.getZone(2).addNeighbour(polarSink.name, 18);
 
 //"Arrakeen"  
 arrakeen.addZone(new Zone(), 1)
-arrakeen.getZone(1).addNeighbour(ohGap.name, 1);
+arrakeen.getZone(1).addNeighbour(regionsMap['ohGap'].name, 1);
 arrakeen.getZone(1).addNeighbour(imperialBasin.name, 1);
 arrakeen.getZone(1).addNeighbour(rimWallWest.name, 2);
 
 //"Basin"
 basin.addZone(new Zone(), 2)
-basin.getZone(2).addNeighbour(ohGap.name, 2);
+basin.getZone(2).addNeighbour(regionsMap['ohGap'].name, 2);
 basin.getZone(2).addNeighbour(rimWallWest.name, 2);
 basin.getZone(2).addNeighbour(sihayaRidge.name, 2);
 basin.getZone(2).addNeighbour(holeInTheRock.name, 2);
 
 //"Rim Wall West"
 rimWallWest.addZone(new Zone(), 2)
-rimWallWest.getZone(2).addNeighbour(ohGap.name, 2);
+rimWallWest.getZone(2).addNeighbour(regionsMap['ohGap'].name, 2);
 rimWallWest.getZone(2).addNeighbour(imperialBasin.name, 2);
 rimWallWest.getZone(2).addNeighbour(imperialBasin.name, 1);
 rimWallWest.getZone(2).addNeighbour(arrakeen.name, 1);
@@ -177,7 +179,7 @@ sihayaRidge.getZone(2).addNeighbour(garaKulon.name, 3);
 
 //"Shield Wall"
 shieldWall.addZone(new Zone(), 2)
-    .addZone(new Zone(), 3) 
+    .addZone(new Zone(), 3)
 shieldWall.getZone(2).addNeighbour(shieldWall.name, 3);
 shieldWall.getZone(2).addNeighbour(imperialBasin.name, 2);
 shieldWall.getZone(2).addNeighbour(holeInTheRock.name, 2);
@@ -311,8 +313,8 @@ falseWallSouth.getZone(7).addNeighbour(southMesa.name, 7);
 falseWallSouth.getZone(7).addNeighbour(cielagoEast.name, 7);
 falseWallSouth.getZone(7).addNeighbour(cielagoEast.name, 8);
 falseWallSouth.getZone(7).addNeighbour(cielagoNorth.name, 8);
-falseWallSouth.getZone(7).addNeighbour(hargPass.name, 7);				       
-				       
+falseWallSouth.getZone(7).addNeighbour(hargPass.name, 7);
+
 //"Harg Pass"
 hargPass.addZone(new Zone(), 6)
     .addZone(new Zone(), 7);
@@ -402,7 +404,7 @@ cielagoWest.getZone(11).addNeighbour(habbanyaRidgeFlat.name, 11);
 
 //"Meridian"
 meridian.addZone(new Zone(), 9)
-    .addZone(new Zone(), 10); 
+    .addZone(new Zone(), 10);
 meridian.getZone(9).addNeighbour(meridian.name, 10);
 meridian.getZone(9).addNeighbour(cielagoDepression.name, 9);
 meridian.getZone(9).addNeighbour(cielagoSouth.name, 9);
@@ -600,7 +602,7 @@ polarSink.getZone(1).addNeighbour(haggaBasin.name, 16);
 
 //Spice
 
-ohGap.getZone(1).haveSpice = true;
+regionsMap['ohGap'].getZone(1).haveSpice = true;
 sihayaRidge.getZone(2).haveSpice = true;
 theMinorErg.getZone(3).haveSpice = true;
 redChasm.getZone(4).haveSpice = true;
@@ -631,7 +633,7 @@ Arrakeen.getZone(1).hasCopter = true;
 
 //Add to the map
 
-for(var i=0; i<regionsMap.length;i++){
+for (var i = 0; i < regionsMap.length; i++) {
     var myMap = new Map();
     myMap.addRegion(regionsMap[i]);
 
