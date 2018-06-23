@@ -2,6 +2,7 @@
 
 // The rules check to see if a user has the right to do a certain action.
 // It checks the adjacency of Zones, Moves the Storm, spawns Spice, etc
+
 function Rules(map) {
     this.map = map;
 }
@@ -108,3 +109,44 @@ myMap.addRegion(theMinorErg);
 // it might be wise to make 5-6 regions and test the adjacency algorithms (which have yet to be written..)
 // 
 var theRules = new Rules(myMap);
+
+
+// Didier
+// function Player(data) {
+//     this.spice = data.spice;
+//     this.soldiers = data.soldiers;
+//     this.cards = data.cards;
+// }
+
+// Player.prototype.getSpice  = function () {
+//     return this.spice;
+// };
+
+// Player.prototype.getSpiceFromDeals  = function () {
+//     // for () .
+//     // there is actual code here
+//     return 39;
+// };
+
+// Player.prototype.getSpiceForTurn = function () {
+//     return this.getSpiceFromDeals() + this.getSpice();
+// }
+
+// var players = {};
+
+// players['harkonnen'] = new Player('harkonnen', {"spice": 5, "soldiers": 20});
+// players['atreides'] = new Player('atreides', {"spice": 5, "soldiers": 20});
+
+// var spice = players['harkonnen'].spice;
+// var spice = players['harkonnen'].getSpice();
+
+// if (spice > 20) {
+//     console.log("This person is very rich!!");
+// }
+
+// var dictionnary = {"key1": "poop", "key2": "LOL"};
+// players['harkonnen'].addCard(dictionnary.pop('key1'));
+
+// //"poop";
+// console.log(dictionnary);
+// // {"key2": "LOL"};
