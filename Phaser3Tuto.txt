@@ -1,0 +1,99 @@
+//These are some useful lines of codes to know for Phaser 3
+
+//Sprites
+
+	//preload image in preload section
+
+	this.load.image("custom Name", "folder/file.png");			
+
+	//add sprite on screen
+
+	var example = this.add.sprite(positionX, positionY, "nameOfThePictureInPreload");
+
+	//Set the origin of image
+	//Note: in Phaser 3, sprites have (0.5,0.5) by default
+	
+	example.setOrigin(0,0) //this sets the origin for the top left corner
+
+	//Set width and height of picture
+
+		//1rst way: by multiplying is size
+
+		example.setScale(2)//this doubles the size of the sprite
+
+		//2nd way: manually
+
+		example.displayWidth = 300;
+		example.displayHeight = 400;	
+
+	//angle
+
+	example.angle = 90;
+	example.angle += 60;
+
+	//Tint
+
+	example.setTint();
+
+	//Toggle the sprite on/off
+	example.visible = true/false;
+
+//Text
+
+	//add text to screen
+
+	var example = this.add.text(positionX, positionY,"Text to show", {fontSize: "20px", fill:'#fff'});
+	//Note:proprites of sprite seen above works on text too.
+
+//Geometric shapes
+
+	//make a circle
+
+	var graphics = this.add.graphics({ fillStyle: { color: "#fff"} });
+	var circle = new Phaser.Geom.Circle(positionX, positionY, diametre);
+	
+	//if you wan the shape to be full
+	graphics.fillCircleShape(circle);
+
+//Interactivity
+	//Note: works on every objects seen above
+
+	var example = this.add.sprite(X,Y,"name").setInteractive();
+
+	example.on("pointerdown", function(){
+
+		//your stuff here
+
+	});
+
+//Scenes
+
+	//In the game config
+	let config = {
+    		type: Phaser.AUTO,
+    		width:  window.innerWidth * window.devicePixelRatio,//makes the screen ajust to the screen
+    		height: window.innerHeight * window.devicePixelRatio,
+    		scene: [scene1, scene2, scene3]//You need to specify all your scenes here
+	};
+
+	//In the scene itself
+	var scene1 = new Phaser.Class({//this is the name from the config
+
+    		Extends: Phaser.Scene,
+
+    		initialize:
+
+    		function scene1 () {
+
+			Phaser.Scene.call(this, { key: "The first Scene"});//this will be the names that will be called when calling a new scene
+	
+    		},
+	
+    		preload: function(){
+    		},
+    		create: function(){
+			this.scene.start("the second scene");  //call another scene  
+		},
+    		update: function(){
+		},
+	});	
