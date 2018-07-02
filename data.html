@@ -29,60 +29,89 @@
 <script language="javascript" type="text/javascript">
 
 
-	var PlayerInfo = {	"Atreides" : {  "Spice" : 5,
-										"MaxCards" : 4,
-										"Cards" : ['Poison attack','Hajr'],
-										"Units" : 15,
-										"SpecialUnits" : false,
-										"FieldUnits" : [5,'Cielago north'],
-										"FieldSpecialUnits" : false},
+//var players = {};
+//players['Harkonnen'] = new Player('Harkonnen', {...});
+//players['Harkonnen'].drop(regionMap['tsimpo'], 20);
 
-						"Harkonnen" : { "Spice" : 10,
-										"MaxCards" : 8,
-										"Cards" : ['Poop'],
-										"Units" : 15,
-										"SpecialUnits" : 0,
-										"FieldUnits" : [5,'Red Chasm'],
-										"FieldSpecialUnits" : []},
+function Player(name, data) {
+	this.spice = data.spice;
+    this.soldiers = data.soldiers;
+   	this.cards = data.cards;
+ }
 
-						"Fremen" :    { "Spice" : 3,
-										"MaxCards" : 4,
-										"Cards" : [],
-										"Units" : 8,
-										"SpecialUnits" : 1,
-										"FieldUnits" : [3,'Cielago South',6,'Polar Sink'],
-										"FieldSpecialUnits" : [2,'Cielago South']}
-	};
+function Card(name,data) {
+	this.name = data.name;
+}
+
+
+var playerInfo = {};
+
+playerInfo['Harkonnen'] = new Player('Harkonnen', {"spice": 5, "soldiers": 20, "cards": []});
+playerInfo['Atreides'] = new Player('Atreides', {"spice": 5, "soldiers": 20, "cards": []});
 
 
 
+var cardDeck= {};
 
-var players = {};
-
-players['Harkonnen'] = new Player('Harkonnen', {...});
-
-players['Harkonnen'].drop(regionMap['tsimpo'], 20);
-
-
+cardDeck['01'] = new Card('01', {"name": "Cheap Hero"});
+cardDeck['02'] = new Card('02', {"name": "Cheap Hero"});
+cardDeck['03'] = new Card('03', {"name": "Cheap Heroine"});
+cardDeck['04'] = new Card('04', {"name": "Lasgun"});
 
 
 
+	console.log(playerInfo.Harkonnen.spice)
+	console.log(playerInfo.Atreides)
+	console.log(cardDeck['01'])
 
 
 
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+
+// How do I call this function to return the spice value!?
+
+Player.prototype.getSpice  = function () {
+     return this.spice;
+ };
+
+console.log(Player.prototype.getSpice)
+
+//////////////////////
+Player.prototype.getSpice  = function (data) {
+     return this.spice;
+ };
+
+console.log(Player.prototype.getSpice('Harkonnen'))
+
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+
+
+// Player.prototype.getSpiceFromDeals  = function () {
+//     // for () .
+//     // there is actual code here
+//     return 39;
+// };
+
+// Player.prototype.getSpiceForTurn = function () {
+//     return this.getSpiceFromDeals() + this.getSpice();
+// }
 
 
 
+// var spice = players['harkonnen'].spice;
+// var spice = players['harkonnen'].getSpice();
 
+// if (spice > 20) {
+//     console.log("This person is very rich!!");
+// }
 
-	var Cards= { "Deck"    : [],
-				 "Player"  : [],
-				 "Discard" : [],
-	};
+// var dictionnary = {"key1": "poop", "key2": "LOL"};
+// players['harkonnen'].addCard(dictionnary.pop('key1'));
 
-
-	console.log(PlayerInfo.Atreides.Spice)
-	console.log(PlayerInfo.Harkonnen.Units)
-	console.log(PlayerInfo.Fremen.FieldUnits)
+// //"poop";
+// console.log(dictionnary);
+// // {"key2": "LOL"};
 
 </script>
