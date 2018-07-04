@@ -1,0 +1,236 @@
+var storm = new Phaser.Class({
+
+    Extends: Phaser.Scene,
+
+    initialize:
+
+    function storm ()
+    {
+        Phaser.Scene.call(this, { key: 'Storm' });
+    },
+
+    preload: function ()
+    {
+
+    },
+
+    create: function ()
+    {
+	//1:Reveal storm marker
+	//2:Play weather control? Not first turn
+	//3:Play family atomic? Not first turn
+	//4:Move storm
+    },
+
+    update: function ()
+    {
+	
+    },
+
+});
+
+var spiceBlow = new Phaser.Class({
+
+    Extends: Phaser.Scene,
+
+    initialize:
+
+    function spiceBlow ()
+    {
+        Phaser.Scene.call(this, { key: 'Spice Blow' });
+    },
+
+    preload: function ()
+    {
+
+    },
+
+    create: function ()
+    {
+
+    },
+
+    update: function ()
+    {
+	
+    },
+
+});
+
+var bidding = new Phaser.Class({
+
+    Extends: Phaser.Scene,
+
+    initialize:
+
+    function bidding ()
+    {
+        Phaser.Scene.call(this, { key: 'Bidding Round' });
+    },
+
+    preload: function ()
+    {
+
+    },
+
+    create: function ()
+    {
+
+    },
+
+    update: function ()
+    {
+	
+    },
+
+});
+
+var movement = new Phaser.Class({
+
+    Extends: Phaser.Scene,
+
+    initialize:
+
+    function movement ()
+    {
+        Phaser.Scene.call(this, { key: 'Movement' });
+    },
+
+    preload: function ()
+    {
+
+    },
+
+    create: function ()
+    {
+
+    },
+
+    update: function ()
+    {
+	
+    },
+
+});
+
+var battles = new Phaser.Class({
+
+    Extends: Phaser.Scene,
+
+    initialize:
+
+    function battles ()
+    {
+        Phaser.Scene.call(this, { key: 'Battles' });
+    },
+
+    preload: function ()
+    {
+
+    },
+
+    create: function ()
+    {
+
+    },
+
+    update: function ()
+    {
+	
+    },
+
+});
+
+var spiceCollection = new Phaser.Class({
+
+    Extends: Phaser.Scene,
+
+    initialize:
+
+    function spiceCollection ()
+    {
+        Phaser.Scene.call(this, { key: 'Spice Collection' });
+    },
+
+    preload: function ()
+    {
+
+    },
+
+    create: function ()
+    {
+
+    },
+
+    update: function ()
+    {
+	
+    },
+
+});
+
+var bribery = new Phaser.Class({
+
+    Extends: Phaser.Scene,
+
+    initialize:
+
+    function  ()
+    {
+        Phaser.Scene.call(this, { key: 'Bribery' });
+    },
+
+    preload: function ()
+    {
+
+    },
+
+    create: function ()
+    {
+
+    },
+
+    update: function ()
+    {
+	
+    },
+
+});
+
+var misc = new Phaser.Class({
+
+    Extends: Phaser.Scene,
+
+    initialize:
+
+    function misc ()
+    {
+        Phaser.Scene.call(this, { key: 'Misc' });
+    },
+
+    preload: function ()
+    {
+
+    },
+
+    create: function ()
+    {
+
+    },
+
+    update: function ()
+    {
+	
+    },
+
+});
+
+let config = {
+    type: Phaser.AUTO,
+    width: window.innerWidth * window.devicePixelRatio,
+    height: window.innerHeight * window.devicePixelRatio,
+    backgroundColor: '#000000',
+    scene: [ storm, spiceBlow, bidding, movement, battles, spiceCollection , bribery, misc]
+};
+
+let game = new Phaser.Game(config);

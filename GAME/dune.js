@@ -62,11 +62,22 @@ Region.prototype.getZone = function(timezone) {
 // Zones take care of the granular knowledge.
 // Whether the zone is a city, or if it has spice, or if it has other qualities that may be relevant to the rules
 function Zone() {
+    
     this.neighbours = [];
     this.hasSpice   = false;
     this.isCity     = false;
     this.hasCopter  = false;
 
+    this.troopTokens = 0;
+    this.troopTokensText = "";
+    this.troopTokensZone = "";
+
+    this.spiceTokens = 0;
+    this.spiceTokensZone = "";
+    this.spiceTokensText = "";
+
+    this.x = 0;
+    this.y = 0;
 }
 
 // Zones are not necessarily neighbours with all the zones in their region. They need to know about it.
@@ -76,41 +87,21 @@ Zone.prototype.addNeighbour = function(name, timezone) {
     return this;
 }
 
-// EXAMPLE USAGE
-// I want to create a Region with four zones.
-// Lets call it "The Minor Erg". It starts at the timezone index 5 and finishes at 8
-var theMinorErg = new Region("The Minor Erg");
-zone5 = new Zone();
-zone6 = new Zone();
-zone7 = new Zone();
-zone8 = new Zone();
-theMinorErg.addZone(zone5, 5)
-            .addZone(zone6, 6)
-            .addZone(zone7, 7)
-            .addZone(zone8, 8);
+Zone.prototype.addTroopTokens = function(amount) {
+    this.troopTokens += amount;
+    return this;
+}
 
-// Each of these zones are neighbours with their immediate friendos.
-theMinorErg.getZone(5).addNeighbour(theMinorErg.name, 6);
-theMinorErg.getZone(6).addNeighbour(theMinorErg.name, 5);
-theMinorErg.getZone(6).addNeighbour(theMinorErg.name, 7);
-theMinorErg.getZone(7).addNeighbour(theMinorErg.name, 6);
-theMinorErg.getZone(7).addNeighbour(theMinorErg.name, 8);
-theMinorErg.getZone(8).addNeighbour(theMinorErg.name, 7);
+Zone.prototype.removeTroopTokens = function(amount) {
+    this.troopTokens -= amount;
+    return this;
+}
 
-// And with this we have exactly one region and its zones! But there are more to come.
-// These need to be neighbours with the zones of other regions as well. Swell.
-// And Finally, we can add the minor erg to the Map.
-
-var myMap = new Map();
-myMap.addRegion(theMinorErg);
-
-
-// Now to do the same with all other regions.
-// it might be wise to make 5-6 regions and test the adjacency algorithms (which have yet to be written..)
-// 
-var theRules = new Rules(myMap);
-
-
+Zone.prototype.setXYtroopTokens = function(newX, newY){
+    this.x = newX;
+    this.y = newY;
+    return this;
+}
 // Didier
 // function Player(data) {
 //     this.spice = data.spice;

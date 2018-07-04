@@ -51,6 +51,8 @@ for (var i = 0; i < regionsMapNames.length; i++) {
     regionsMap[regionsMapNames[i]] = new Region(regionsMapName[i]);
 };
 
+console.log(regionsMap);
+
 //Add neighbours
 
 //Broken Land
@@ -64,7 +66,6 @@ regionsMap['brokenLand'].getZone(18).addNeighbour(regionsMap['rockOutcroppings']
 regionsMap['brokenLand'].getZone(18).addNeighbour(regionsMap['plasticBasin'].name, 18);
 regionsMap['brokenLand'].getZone(18).addNeighbour(regionsMap['tsimpo'].name, 18);
 
-console.log(regionsMap);
 //"Oh Gap"
 regionsMap['ohGap'].addZone(new Zone(), 1)
     .addZone(new Zone(), 2)
@@ -602,21 +603,21 @@ regionsMap['polarSink'].getZone(0).addNeighbour(regionsMap['haggaBasin'].name, 1
 
 //Spice
 
-regionsMap['ohGap'].getZone(2).haveSpice = true;
-regionsMap['sihayaRidge'].getZone(3).haveSpice = true;
-regionsMap['theMinorErg'].getZone(4).haveSpice = true;
-regionsMap['redChasm'].getZone(5).haveSpice = true;
-regionsMap['southMesa'].getZone(6).haveSpice = true;
-regionsMap['cielagoNorth'].getZone(9).haveSpice = true;
-regionsMap['cielagoSouth'].getZone(10).haveSpice = true;
-regionsMap['habbanyaRidgeFlat'].getZone(12).haveSpice = true;
-regionsMap['windPassNorth'].getZone(13).haveSpice = true;
-regionsMap['habbanyaErg'].getZone(14).haveSpice = true;
-regionsMap['theGreatFlat'].getZone(15).haveSpice = true;
-regionsMap['funeralPlain'].getZone(15).haveSpice = true;
-regionsMap['rockOutcroppings'].getZone(16).haveSpice = true;
-regionsMap['haggaBasin'].getZone(17).haveSpice = true;
-regionsMap['brokenLand'].getZone(18).haveSpice = true;
+regionsMap['ohGap'].getZone(2).hasSpice = true;
+regionsMap['sihayaRidge'].getZone(3).hasSpice = true;
+regionsMap['theMinorErg'].getZone(4).hasSpice = true;
+regionsMap['redChasm'].getZone(5).hasSpice = true;
+regionsMap['southMesa'].getZone(7).hasSpice = true;
+regionsMap['cielagoNorth'].getZone(9).hasSpice = true;
+regionsMap['cielagoSouth'].getZone(10).hasSpice = true;
+regionsMap['habbanyaRidgeFlat'].getZone(12).hasSpice = true;
+regionsMap['windPassNorth'].getZone(13).hasSpice = true;
+regionsMap['habbanyaErg'].getZone(14).hasSpice = true;
+regionsMap['theGreatFlat'].getZone(15).hasSpice = true;
+regionsMap['funeralPlain'].getZone(15).hasSpice = true;
+regionsMap['rockOutcroppings'].getZone(16).hasSpice = true;
+regionsMap['haggaBasin'].getZone(17).hasSpice = true;
+regionsMap['brokenLand'].getZone(18).hasSpice = true;
 
 //Cities
 
@@ -637,4 +638,13 @@ for (var i = 0; i < regionsMap.length; i++) {
     var myMap = new Map();
     myMap.addRegion(regionsMap[i]);
 
+};
+
+
+for(var i=0;i<regionsMapNames.length;i++){
+    for(var j=0;j<regionsMap[regionsMapNames[i]].zones.length;j++){
+	if( regionsMap[regionsMapNames[i]].zones[j] != undefined){
+	    regionsMap[regionsMapNames[i]].zones[j].name = regionsMapName[i] + " " +  j;
+	}
+    };
 };

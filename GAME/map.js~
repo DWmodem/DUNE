@@ -1,0 +1,101 @@
+var map={};
+
+var mapGen = new Phaser.Class({
+
+    Extends: Phaser.Scene,
+
+    initialize:
+
+    function mapGen ()
+    {
+        Phaser.Scene.call(this, { key: 'Generate Map' });
+    },
+
+    preload: function ()
+    {
+	this.load.image("Map", "ART/map/duneMap.png");
+	this.load.image("Troop Tokens", "ART/map/troopTokens.png");
+
+	/*
+	for(var i=0;i<regionsMapName.length;i++){
+	    this.load.image(regionsMapName[i], "ART/map/" + regionsMapNames[i] + ".png");
+
+	};
+	*/
+
+    },
+    
+    create: function ()
+    {
+	//Place background map
+	var milieuX =  window.innerWidth / 2;
+	var milieuY = window.innerHeight / 2;
+
+	map = this.add.sprite(milieuX, milieuY, "Map");
+	map.setScale(0.8);
+
+	//Tokens regions
+	var graphics = this.add.graphics({ fillStyle: { color: "0xFF0000"} });
+
+	for(var i=0;i<regionsMapNames.length;i++){
+	    for(var j=0;j<regionsMap[regionsMapNames[i]].zones.length;j++){
+		if( regionsMap[regionsMapNames[i]].zones[j] != undefined){
+		    
+		    regionsMap[regionsMapNames[i]].zones[j].troopTokensZone = this.add.sprite(0, 0, "Troop Tokens").setInteractive(); 
+		    regionsMap[regionsMapNames[i]].zones[j].troopTokensZone.setOrigin(0.5,0.5);
+		    regionsMap[regionsMapNames[i]].zones[j].troopTokensZone.displayWidth = 40;
+		    regionsMap[regionsMapNames[i]].zones[j].troopTokensZone.displayHeight = 40;
+
+		    regionsMap[regionsMapNames[i]].zones[j].troopTokensText = this.add.text(0, 0,  regionsMap[regionsMapNames[i]].zones[j].troopTokens, {fontSize: "20px", fill:'#fff'});
+		    regionsMap[regionsMapNames[i]].zones[j].troopTokensText.setOrigin(0.5,0.5);
+		    
+		    regionsMap[regionsMapNames[i]].zones[j].troopTokensZone.on('pointerdown', function() {
+			
+		    });
+
+		    graphics.fillCircleShape(regionsMap[regionsMapNames[i]].zones[j].troopTokensZone);
+		    
+		    		    
+		}
+	    };
+	};
+
+	regionsMap["brokenLand"].zones[1].troopTokensZone.x = 100;
+	regionsMap["brokenLand"].zones[1].troopTokensZone.y = 100;
+	regionsMap["brokenLand"].zones[1].troopTokensText.x = 100;
+	regionsMap["brokenLand"].zones[1].troopTokensText.y = 100;
+	
+	regionsMap["brokenLand"].zones[18].troopTokensZone.x = 200;
+	regionsMap["brokenLand"].zones[18].troopTokensZone.y = 100;
+	
+	/*
+	for(var i=0; i<regionsMapName.length;i++){
+
+	    regionsMap[regionsMapNames[i]].mapSprite = this.add.sprite(0,0,regionsMapName[i]).setInteractive();
+	    regionsMap[regionsMapNames[i]].mapSprite.on("pointerdown", function(){
+		console.log(this.texture);
+	    });
+	    regionsMap[regionsMapNames[i]].mapSprite.setOrigin(0.5,0.5);
+	}
+	console.log(regionsMap);
+
+	for(var i=0; i<regionsMapName.length;i++){
+
+	    regionsMap["polarSink"].mapSprite.x = milieuX;
+	    regionsMap["polarSink"].mapSprite.y = milieuY;
+
+	    regionsMap["falseWallEast"].mapSprite.x = milieuX + 100;
+	    regionsMap["falseWallEast"].mapSprite.y = milieuY;
+
+
+	};
+*/
+    },
+
+    update: function ()
+    {
+	
+    },
+
+});
+

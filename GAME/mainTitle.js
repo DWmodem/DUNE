@@ -164,6 +164,7 @@ var choosePlayer = new Phaser.Class({
 
     create: function ()
     {
+	
 	var houses = ["Atreides","Bene Guesserit", "Emperor", "Fremen", "Guild", "Harkonnen"];
 	var housesImg =  ["Atreides","Bene Guesserit", "Emperor", "Fremen", "Guild", "Harkonnen"];
 	var houseBadge = ["Atreides","Bene Guesserit", "Emperor", "Fremen", "Guild", "Harkonnen"];
@@ -221,6 +222,11 @@ var choosePlayer = new Phaser.Class({
 	    positionY += (window.innerHeight * window.devicePixelRatio)/2;
 	    positionX = 0;
 	};
+	var continu = this.add.text(window.innerWidth * window.devicePixelRatio - 200, window.innerHeight * window.devicePixelRatio /2, "Continue", { fontSize: "40px", fill: "#fff"}).setInteractive();
+	continu.setOrigin(0.5, 0.5);
+	continu.on("pointerdown", function () {
+	    this.scene.start('Generate Map');
+	},this);
     },
 
     update: function ()
@@ -230,6 +236,7 @@ var choosePlayer = new Phaser.Class({
 
 });
 
+/*
 var template = new Phaser.Class({
 
     Extends: Phaser.Scene,
@@ -257,14 +264,5 @@ var template = new Phaser.Class({
     },
 
 });
-
-let config = {
-    type: Phaser.AUTO,
-    width: window.innerWidth * window.devicePixelRatio,
-    height: window.innerHeight * window.devicePixelRatio,
-    backgroundColor: '#000000',
-    scene: [ mainTitle, mainMenu, newGame, choosePlayer]
-};
-
-let game = new Phaser.Game(config);
+*/
 
