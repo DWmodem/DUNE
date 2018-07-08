@@ -1,4 +1,4 @@
-var storm = new Phaser.Class({
+/*var storm = new Phaser.Class({
 
     Extends: Phaser.Scene,
 
@@ -28,7 +28,7 @@ var storm = new Phaser.Class({
     },
 
 });
-
+*/
 var spiceBlow = new Phaser.Class({
 
     Extends: Phaser.Scene,
@@ -197,7 +197,7 @@ var bribery = new Phaser.Class({
 
     initialize:
 
-    function  ()
+    function bribery ()
     {
         Phaser.Scene.call(this, { key: 'Bribery' });
     },
@@ -246,3 +246,4 @@ var misc = new Phaser.Class({
     },
 
 });
+

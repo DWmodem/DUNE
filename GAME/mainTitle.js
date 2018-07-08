@@ -1,9 +1,9 @@
 var mainTitle = new Phaser.Class({
-
+    
     Extends: Phaser.Scene,
-
+    
     initialize:
-
+    
     function mainTitle ()
     {
         Phaser.Scene.call(this, { key: 'Main Title' });

@@ -27,6 +27,10 @@ var mapGen = new Phaser.Class({
     
     create: function ()
     {
+
+	config.width = 1000;
+	config.height = 1000;
+
 	//variables
 
 	var sizeTokensTroops = 30;
