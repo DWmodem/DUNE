@@ -1,4 +1,6 @@
-/*var storm = new Phaser.Class({
+console.log("rounds ok");
+
+var storm = new Phaser.Class({
 
     Extends: Phaser.Scene,
 
@@ -11,7 +13,8 @@
 
     preload: function ()
     {
-
+	this.load.image("Storm", "ART/images/storm.png");
+	this.load.image("Troop Tokens", "ART/map/troopTokens.png");
     },
 
     create: function ()
@@ -20,6 +23,10 @@
 	//2:Play weather control? * player Not first turn 
 	//3:Play family atomic? * player Not first turn
 	//4:Move storm
+	var stormSprite = this.add.sprite(250,950, "Storm");
+
+	test.visible = true;
+	console.log(test);
     },
 
     update: function ()
@@ -28,7 +35,7 @@
     },
 
 });
-*/
+
 var spiceBlow = new Phaser.Class({
 
     Extends: Phaser.Scene,

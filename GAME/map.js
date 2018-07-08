@@ -1,4 +1,11 @@
-var map={};
+console.log("map gen ok")
+
+var map={
+
+
+};
+
+var test;
 
 var mapGen = new Phaser.Class({
 
@@ -16,13 +23,6 @@ var mapGen = new Phaser.Class({
 	this.load.image("Map", "ART/map/duneMapStretch.png");
 	this.load.image("Troop Tokens", "ART/map/troopTokens.png");
 
-	/*
-	for(var i=0;i<regionsMapName.length;i++){
-	    this.load.image(regionsMapName[i], "ART/map/" + regionsMapNames[i] + ".png");
-
-	};
-	*/
-
     },
     
     create: function ()
@@ -39,12 +39,10 @@ var mapGen = new Phaser.Class({
 	var milieuX = 1000 / 2;
 	var milieuY = 1000 / 2;
 
-	map = this.add.sprite(milieuX, milieuY, "Map");
-	map.displayWidth = 1000;
-	map.displayHeight = 1000;
-	map.setTint(0xffffe6);
-	//map.setOrigin(0,0);
-	//map.setScale(0.8);
+	map.background = this.add.sprite(milieuX, milieuY, "Map");
+	map.background.displayWidth = 1000;
+	map.background.displayHeight = 1000;
+	map.background.setTint(0xffffe6);
 
 	//Tokens regions
 
@@ -174,7 +172,7 @@ var mapGen = new Phaser.Class({
 			//Actions pour les tokens
 			
 		    });
-		      //check for spice zones
+		    //check for spice zones
 		    if(regionsMap[regionsMapNames[i]].getZone(j).hasSpice == true){
 			regionsMap[regionsMapNames[i]].getZone(j).spiceTokensZone = this.add.sprite(0,0,"Troop Tokens");
 			regionsMap[regionsMapNames[i]].getZone(j).spiceTokensZone.displayWidth = sizeTokensTroops;
@@ -214,6 +212,11 @@ var mapGen = new Phaser.Class({
 	    
 	};
 
+	test = this.add.sprite(500,500, "Troop Tokens");
+	test.setTint(0xFFFFFF);
+	test.visible = false;
+
+	//this.scene.start("Storm");	
 
     },
 
