@@ -4,7 +4,7 @@ let config = {
     width: window.innerWidth,
     height: window.innerHeight,
     backgroundColor: '#000000',
-    scene: [ mainTitle, mainMenu, newGame, choosePlayer, mapGen, storm, spiceBlow, bidding, movement, battles, spiceCollection, bribery, misc ]
+    scene: [ mainTitle, mainMenu, newGame, choosePlayer, mapGen /*, storm, spiceBlow, bidding, movement, battles, spiceCollection, bribery, misc */ ]
 
 };
 
